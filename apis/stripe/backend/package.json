@@ -1,0 +1,8 @@
+{
+  "name": "stripe-poc-backend",
+  "version": "1.0.0",
+  "description": "A POC for server-side stripe payment processing",
+  "main": "index.js",
+  "author": "Henrique Cotta",
+  "license": "MIT"
+}
