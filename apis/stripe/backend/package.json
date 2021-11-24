@@ -4,5 +4,23 @@
   "description": "A POC for server-side stripe payment processing",
   "main": "index.js",
   "author": "Henrique Cotta",
-  "license": "MIT"
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules ./src/index.ts"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "stripe": "^8.190.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/stripe": "^8.0.417",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.2"
+  }
 }
