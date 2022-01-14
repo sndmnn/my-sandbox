@@ -1,0 +1,13 @@
+{
+  "name": "docker-first-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Henrique Cotta",
+  "license": "MIT",
+  "scripts": {
+      "start:dev": "node ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
