@@ -5,7 +5,7 @@
   "author": "Henrique Cotta",
   "license": "MIT",
   "scripts": {
-      "start:dev": "node ./src/index.js"
+      "start": "node ./src/index.js"
   },
   "dependencies": {
     "express": "^4.17.2"
