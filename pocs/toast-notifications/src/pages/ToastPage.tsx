@@ -2,7 +2,12 @@ import React, { useCallback, useMemo, useRef, useState } from 'react';
 import useToast from '../hooks/useToast';
 import Toast from '../models/Toast';
 
-import { EmitToastButton, ToastInformationForm } from './ToastPage.styles';
+import {
+  EmitToastButton,
+  PageContainer,
+  PageContent,
+  ToastInformationForm,
+} from './ToastPage.styles';
 
 const ToastPage: React.FC = () => {
   const { addToast } = useToast();
@@ -47,29 +52,38 @@ const ToastPage: React.FC = () => {
   }, [addToast, selectedToast.title, selectedToast.type]);
 
   return (
-    <div>
-      <h1>Create a Toast</h1>
-      <ToastInformationForm>
-        <select
-          onChange={e =>
-            setSelectedToast(toastOptions[e.target.options.selectedIndex])
-          }
-        >
-          {toastOptions.map(toastOption => (
-            <option key={toastOption.type} value={toastOption.type}>
-              {toastOption.title}
-            </option>
-          ))}
-        </select>
-        <input type="text" placeholder="Toast title" ref={toastTitleRef} />
-        <input
-          type="text"
-          placeholder="Toast description"
-          ref={toastDescriptionRef}
-        />
-      </ToastInformationForm>
-      <EmitToastButton onClick={emitToast}>Emit Toast</EmitToastButton>
-    </div>
+    <PageContainer>
+      <PageContent>
+        <h1 className="page-title">Create a Toast</h1>
+        <ToastInformationForm>
+          <select
+            className="toast-type"
+            onChange={e =>
+              setSelectedToast(toastOptions[e.target.options.selectedIndex])
+            }
+          >
+            {toastOptions.map(toastOption => (
+              <option key={toastOption.type} value={toastOption.type}>
+                {toastOption.title}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            className="toast-title"
+            placeholder="Toast title (optional)"
+            ref={toastTitleRef}
+          />
+          <input
+            type="text"
+            className="toast-description"
+            placeholder="Toast description (optional)"
+            ref={toastDescriptionRef}
+          />
+        </ToastInformationForm>
+        <EmitToastButton onClick={emitToast}>Emit Toast</EmitToastButton>
+      </PageContent>
+    </PageContainer>
   );
 };
 
