@@ -57,6 +57,13 @@ export default createGlobalStyle`
     --color-white: #ffffff;
     --color-black: #020a17;
     --color-grey: #3e434b;
+    --color-blue-pale: #ebf8ff;
+    --color-blue-contrast: #3172b7;
+    --color-green: #14900d;
+    --color-green-pale: #e6fffa;
+    --color-green-contrast: #2e656a;
+    --color-red-pale: #fddede;
+    --color-red-contrast: #c53030;
   
     /* === Typography === */
     /* ================== */
