@@ -1,7 +1,8 @@
 import React from 'react';
+import ProductDisplay from './pages/ProductDisplay';
 
 const App: React.FC = () => {
-  return <div className="App">App</div>;
+  return <ProductDisplay />;
 };
 
 export default App;
