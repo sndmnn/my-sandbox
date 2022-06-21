@@ -1,10 +1,7 @@
-const Pet = (props) => {
-  return React.createElement('div', {}, [
-    React.createElement('h1', {}, props.name),
-    React.createElement('h2', {}, props.animal),
-    React.createElement('h2', {}, props.breed),
-  ]);
-};
+import React from 'react';
+import { render } from 'react-dom';
+
+import Pet from './components/Pet';
 
 const App = () => {
   /*
@@ -13,7 +10,7 @@ const App = () => {
    *
    * It is also important to note that React re-renders the component
    * A LOT, so these function components must run fast. In functional
-   * linguo: they must be pure (not have side effects).
+   * terms: they must be pure (not have side effects).
    */
   return React.createElement('div', {}, [
     React.createElement('h1', {}, 'Adopt Me'),
@@ -35,4 +32,4 @@ const App = () => {
   ]);
 };
 
-ReactDOM.render(React.createElement(App), document.querySelector('#root'));
+render(React.createElement(App), document.querySelector('#root'));
