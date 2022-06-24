@@ -1,7 +1,6 @@
 {
   "name": "adopt-me",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start:dev": "parcel -p 3000 src/index.html",
