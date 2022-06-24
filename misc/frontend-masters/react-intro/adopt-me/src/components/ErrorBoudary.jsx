@@ -1,11 +1,14 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 export default class ErrorBoundary extends Component {
-  state = { hasError: false };
+  state = {
+    hasError: false,
+    redirect: false,
+  };
 
   // https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops
-  static getDerivedState() {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -14,8 +17,16 @@ export default class ErrorBoundary extends Component {
     console.error(error, info);
   }
 
+  componentDidUpdate() {
+    if (this.state.hasError) {
+      setTimeout(() => this.setState({ redirect: true }), 5000);
+    }
+  }
+
   render() {
-    if (this.state.hasError)
+    if (this.state.redirect) {
+      return <Navigate to="/" />;
+    } else if (this.state.hasError)
       return (
         <h2>
           There was an error with this listing. <Link to="/">Click here</Link>{' '}
