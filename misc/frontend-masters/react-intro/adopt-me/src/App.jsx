@@ -1,7 +1,9 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { render } from 'react-dom';
 
 import SearchParams from './components/SearchParams.jsx';
+import Details from './components/Details.jsx';
 
 const App = () => {
   /*
@@ -14,8 +16,16 @@ const App = () => {
    */
   return (
     <div>
-      <h1>Adopt Me!</h1>
-      <SearchParams />
+      <BrowserRouter>
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
+        <Routes>
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/" element={<SearchParams />} />
+        </Routes>
+      </BrowserRouter>
+      ;
     </div>
   );
 };
