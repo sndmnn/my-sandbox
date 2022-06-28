@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { useParams } from 'react-router-dom';
 
+import ThemeContext from '../contexts/ThemeContext.js';
+
 import Carousel from './Carousel.jsx';
 import ErrorBoundary from './ErrorBoudary.jsx';
 
@@ -37,7 +39,15 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
-          <button>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {(contextValue) => {
+              const [color] = contextValue;
+
+              return (
+                <button style={{ backgroundColor: color }}>Adopt {name}</button>
+              );
+            }}
+          </ThemeContext.Consumer>
           <p>{description}</p>
         </div>
       </div>
