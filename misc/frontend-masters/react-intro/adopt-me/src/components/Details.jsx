@@ -5,6 +5,7 @@ import ThemeContext from '../contexts/ThemeContext.js';
 
 import Carousel from './Carousel.jsx';
 import ErrorBoundary from './ErrorBoudary.jsx';
+import Modal from './Modal.jsx';
 
 class Details extends Component {
   // constructor(props) {
@@ -25,12 +26,15 @@ class Details extends Component {
     this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
 
+  toggleModal = () =>
+    this.setState((prevState) => ({ showModal: !prevState.showModal }));
+
   render() {
     if (this.state.loading) {
       return <h2>loading ...</h2>;
     }
 
-    const { animal, breed, city, state, description, name, images } =
+    const { animal, breed, city, state, description, name, images, showModal } =
       this.state;
 
     return (
@@ -44,11 +48,27 @@ class Details extends Component {
               const [color] = contextValue;
 
               return (
-                <button style={{ backgroundColor: color }}>Adopt {name}</button>
+                <button
+                  style={{ backgroundColor: color }}
+                  onClick={this.toggleModal}
+                >
+                  Adopt {name}
+                </button>
               );
             }}
           </ThemeContext.Consumer>
           <p>{description}</p>
+          {showModal && (
+            <Modal>
+              <div>
+                <h1>Would you like to adopt {name}?</h1>
+                <div className="buttons">
+                  <a href="https://bit.ly/pet-adopt">Yes</a>
+                  <button onClick={this.toggleModal}>No</button>
+                </div>
+              </div>
+            </Modal>
+          )}
         </div>
       </div>
     );
