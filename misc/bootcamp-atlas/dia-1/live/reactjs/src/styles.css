@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 32px;
+}
+
+.todo-list :not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.todo {
+  font-size: 1.25rem;
+
+  border: none;
+  background-color: unset;
+}
+
+.todo:hover {
+  cursor: pointer;
+}
+
+.themes {
+  max-width: fit-content;
+  margin: 24px auto;
+}
+
+.themes :not(:last-child) {
+  margin-right: 16px;
+}
+
+.themes button {
+  border: none;
+  background-color: unset;
+
+  font-size: 1.25rem;
+}
+
+.themes button:hover {
+  cursor: pointer;
+}
+
+.todo-list-dark {
+  background-color: #1a1a1a;
+}
+
+.todo-list-dark .todo {
+  color: #fff;
+}
