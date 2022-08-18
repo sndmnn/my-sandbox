@@ -10,4 +10,7 @@ export default class Product {
 
   @Column()
   price: number;
+
+  @Column({ name: 'product_picture_url' })
+  productPictureUrl: string;
 }
