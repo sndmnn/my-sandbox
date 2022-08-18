@@ -1,11 +1,17 @@
 import 'reflect-metadata';
 import './container';
 import './database';
-import express, { json } from 'express';
+import express, { json, static as staticServer } from 'express';
+import { join } from 'path';
+import cors from 'cors';
 import productRouter from './routers/product.router';
 
 const app = express();
+
 app.use(json());
+app.use(cors());
+
+app.use('/files', staticServer(join(__dirname, '..', 'public')));
 
 app.get('/status', (_, res) => res.status(200).send('Server is running'));
 
