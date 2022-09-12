@@ -103,3 +103,30 @@ function Parent() {
     return <Child foo={foo} />
 }
 ```
+
+## `useLayoutEffect`
+---
+
+- This hooks' signature is identical to `useEffect`, but it fires synchronously after all DOM mutations;
+
+- It is identical to how `componentDidMount` used to work. One of `useLayoutEffect`'s use cases is emulating that lifecycle method behaviour when migrating a class component to a function component. However, it is recommended that you eventually try to move towards a solution that implements `useEffect` instead of `useLayoutEffect`;
+
+- Updates scheduled inside `useLayoutEffect` will be flushed synchronously, making it useful when performing calculations that are particularly sensitive to the DOM state at a certain time (such as animations);
+
+- `useEffect` is generally preferred over `useLayoutEffect`. You should start using it first and only migrate to `useLayoutEffect` if it causes any problems.
+
+## `useImperativeHandle`
+---
+
+- `useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`;
+
+- It is a way to bypass React's one-way dataflow, inverting the control from a parent component to a child component, giving a child component the ability to expose an API that the parent component will consume;
+
+- Generally, you'll use this hook in two situations: you're implementing a design system or a library of generic components -- when you need to somewhat restrain how someone may consume it;
+
+- If you're writing code that does not fit one of those situations, it's advised that you reconsider if `useImperativeHandle` is really the best option, or even necessary at all. If you control all of the code, you can rewrite your code in a way that uses React's one-way dataflow, which is generally more intuitive.
+
+## `useDebugValue`
+---
+
+- It's mostly used as a way to expose useful debug information for consumers of a custom hook. Generally it's used in when someone might not necessarily have access to the hooks' code.
