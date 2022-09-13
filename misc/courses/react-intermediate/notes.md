@@ -130,3 +130,11 @@ function Parent() {
 ---
 
 - It's mostly used as a way to expose useful debug information for consumers of a custom hook. Generally it's used in when someone might not necessarily have access to the hooks' code.
+
+# Code Splitting
+
+- From [nextjs.org](https://nextjs.org/learn/foundations/how-nextjs-works/code-splitting): "Code-splitting is the process of splitting the application's bundle into smaller chunks required by each entry point. The goal is to improve the application's initial load time by only loading the code required to run that page".
+
+- It's easy to make code splitting a bad thing in your application. You may add unnecessary latency to deliver a piece of code that could've been delivered with your larger files with almost no additional cost;
+
+- It's unadvisable to follow a code splitting approach when the latency cost to deliver your code in separate pieces outweights the cost of delivering it together;
