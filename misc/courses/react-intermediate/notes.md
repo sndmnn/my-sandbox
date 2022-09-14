@@ -140,7 +140,6 @@ function Parent() {
 - It's unadvisable to follow a code splitting approach when the latency cost to deliver your code in separate pieces outweights the cost of delivering it together;
 
 # Server Side Rendering
----
 
 - When dealing with frontend engineering performance is a major concern, even more than other areas of engineering. It has a particular kind of performance engineering where we deal a lot with human psycology;
 
@@ -151,3 +150,15 @@ function Parent() {
 - With server-side rendering we're trying to make our applications  **feel** like a smoother experience;
 
 - It is important to note that sometimes server-side rendering may make perceived performance (and actual performance) worse. That's why measuring performance and asserting results is important;
+
+# SSR vs. Code Splitting
+
+- The point of Code Splitting is to reduce the ammount of code that you deliver to a user for them to get the application working, delaying the delivery of code that is not immediately needed;
+
+- It can be used to deliver the necessary resources to render a home page and make it interactive, delaying the delivery of resources needed for the rest of the application (an "about", or "pricing" page for instance). This approach will make the home page load faster;
+
+- Code Splitting is really useful when you're trying to reduce the time to first meaningful interactive;
+
+- Server-Side Rendering is used to make a page visible faster, reducing the time to first meaningful paint, but it won't help the time to interactive (and may even make it a little worse);
+
+- Each of these approaches may negatively impact the performance of an application, that's why measuring is important.
