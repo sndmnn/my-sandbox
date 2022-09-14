@@ -1,6 +1,13 @@
+/**
+ * When using a Server Side Rendering approach, we need to segregate
+ * the code that runs on the server from the code that runs on the
+ * client. Things imported from `react-dom`, like `render`  are likely
+ * to want to communicate with the DOM, which is only available on the
+ * browser.
+ */
+// import { render } from 'react-dom';
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { render } from 'react-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 
 import ThemeContext from './contexts/ThemeContext.js';
 
@@ -21,18 +28,21 @@ const App = () => {
   return (
     <div>
       <ThemeContext.Provider value={theme}>
-        <BrowserRouter>
-          <header>
-            <Link to="/">Adopt Me!</Link>
-          </header>
-          <Routes>
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/" element={<SearchParams />} />
-          </Routes>
-        </BrowserRouter>
+        {/* BrowserRouter is also a "browser thing" */}
+        {/* <BrowserRouter> */}
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
+        <Routes>
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/" element={<SearchParams />} />
+        </Routes>
+        {/* </BrowserRouter> */}
       </ThemeContext.Provider>
     </div>
   );
 };
 
-render(<App />, document.querySelector('#root'));
+export default App;
+
+// render(<App />, document.querySelector('#root'));
