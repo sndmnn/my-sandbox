@@ -138,3 +138,16 @@ function Parent() {
 - It's easy to make code splitting a bad thing in your application. You may add unnecessary latency to deliver a piece of code that could've been delivered with your larger files with almost no additional cost;
 
 - It's unadvisable to follow a code splitting approach when the latency cost to deliver your code in separate pieces outweights the cost of delivering it together;
+
+# Server Side Rendering
+---
+
+- When dealing with frontend engineering performance is a major concern, even more than other areas of engineering. It has a particular kind of performance engineering where we deal a lot with human psycology;
+
+- There's actual performance, like the time in milliseconds that an applicatoins takes to respond to a request. And there's perceived performance, like the time it takes to a human comprehend what you're trying to communicate; 
+
+- By reducing the time to the first meaningful render (something that is communicating your message, not just a loading screen) we can obtain a higher percieved performance;
+
+- With server-side rendering we're trying to make our applications  **feel** like a smoother experience;
+
+- It is important to note that sometimes server-side rendering may make perceived performance (and actual performance) worse. That's why measuring performance and asserting results is important;
