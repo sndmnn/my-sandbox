@@ -89,6 +89,8 @@ const WrappedDetails = () => {
   const params = useParams<{ id: string }>();
 
   return (
+    /* It's not supposed to be erroring here, but seemingly due to
+     * react types, it is. I did not find a fix */
     <ErrorBoundary>
       <Details params={params} />
     </ErrorBoundary>
