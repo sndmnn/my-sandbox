@@ -2,32 +2,42 @@ import { Component } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ThemeContext from '../contexts/ThemeContext.js';
+import { Animal, PetApiResponse } from '../types/ApiResponsesTypes.js';
 
-import Carousel from './Carousel.jsx';
-import ErrorBoundary from './ErrorBoudary.jsx';
+import Carousel from './Carousel';
+import ErrorBoundary from './ErrorBoudary';
 import Modal from './Modal.jsx';
 
-class Details extends Component {
-  // constructor(props) {
-  //   super(props);
+interface ComponentProps {
+  params: {
+    id?: string;
+  };
+}
 
-  //   this.state = {
-  //     loading: true,
-  //   };
-  // }
-
-  state = { loading: true };
+class Details extends Component<ComponentProps> {
+  state = {
+    loading: true,
+    showModal: false,
+    animal: '' as Animal,
+    breed: '',
+    city: '',
+    state: '',
+    description: '',
+    name: '',
+    images: [] as string[],
+  };
 
   async componentDidMount() {
+    if (!this.props.params.id) return;
+
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?id=${this.props.params.id}`
     );
-    const json = await res.json();
+    const json = (await res.json()) as PetApiResponse;
     this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
 
-  toggleModal = () =>
-    this.setState((prevState) => ({ showModal: !prevState.showModal }));
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
   render() {
     if (this.state.loading) {
@@ -45,7 +55,7 @@ class Details extends Component {
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
           <ThemeContext.Consumer>
             {(contextValue) => {
-              const [color] = contextValue;
+              const { color } = contextValue;
 
               return (
                 <button
@@ -75,20 +85,12 @@ class Details extends Component {
   }
 }
 
-// const WrappedDetails = () => {
-//   const params = useParams();
-
-//   return <Details params={params} />;
-// };
-
-// This way it's possible to receive other properties and pass
-// them down to <Details />
-const WrappedDetails = (props) => {
-  const params = useParams();
+const WrappedDetails = () => {
+  const params = useParams<{ id: string }>();
 
   return (
     <ErrorBoundary>
-      <Details params={params} {...props} />
+      <Details params={params} />
     </ErrorBoundary>
   );
 };

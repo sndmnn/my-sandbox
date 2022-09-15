@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, ErrorInfo } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 export default class ErrorBoundary extends Component {
@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component {
   }
 
   // https://reactjs.org/docs/react-component.html#componentdidcatch
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: ErrorInfo) {
     console.error(error, info);
   }
 

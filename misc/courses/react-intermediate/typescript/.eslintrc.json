@@ -10,7 +10,7 @@
             "jsx": true
         },
         "sourceType": "module",
-        "project": ["./tsconfig.json"]
+        "project": "./tsconfig.json"
     },
     "extends": [
         "eslint:recommended",
