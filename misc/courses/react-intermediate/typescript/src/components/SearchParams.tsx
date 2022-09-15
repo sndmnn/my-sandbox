@@ -1,22 +1,21 @@
-import { useState, useEffect } from 'react';
-import useBreedList from '../hooks/useBreedList.js';
-// import ThemeContext from '../contexts/ThemeContext.js';
-import Results from './Results.jsx';
-import useTheme from '../hooks/useTheme.js';
+import { useState, useEffect, FunctionComponent } from 'react';
+import useBreedList from '../hooks/useBreedList';
+import Results from './Results';
+import useTheme from '../hooks/useTheme';
+import { Animal, Pet, PetApiResponse } from '../types/ApiResponsesTypes';
 
-const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
+const ANIMALS: Animal[] = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
-const SearchParams = () => {
+const SearchParams: FunctionComponent = () => {
   const [location, setLocation] = useState('');
-  const [animal, setAnimal] = useState('');
+  const [animal, setAnimal] = useState('' as Animal);
   const [breed, setBreed] = useState('');
-  const [pets, setPets] = useState([]);
-  const { breeds } = useBreedList();
-  // const [color]  = useContext(ThemeContext);
-  const [themeColor, setThemeColor] = useTheme();
+  const [pets, setPets] = useState([] as Pet[]);
+  const { breeds } = useBreedList(animal);
+  const { color: themeColor, setColor: setThemeColor } = useTheme();
 
   useEffect(() => {
-    requestPets();
+    void requestPets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -25,7 +24,7 @@ const SearchParams = () => {
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
 
-    const jsonRes = await res.json();
+    const jsonRes = (await res.json()) as PetApiResponse;
     setPets(jsonRes.pets);
   }
 
@@ -34,7 +33,7 @@ const SearchParams = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          requestPets();
+          void requestPets();
         }}
       >
         <label htmlFor="location">
@@ -52,11 +51,11 @@ const SearchParams = () => {
             id="animal"
             value={animal}
             onChange={(e) => {
-              setAnimal(e.target.value);
+              setAnimal(e.target.value as Animal);
               setBreed('');
             }}
             onBlur={(e) => {
-              setAnimal(e.target.value);
+              setAnimal(e.target.value as Animal);
               setBreed('');
             }}
           >
@@ -74,10 +73,10 @@ const SearchParams = () => {
             id="breed"
             value={breed}
             onChange={(e) => {
-              setBreed(e.target.breed);
+              setBreed(e.target.value);
             }}
             onBlur={(e) => {
-              setBreed(e.target.breed);
+              setBreed(e.target.value);
             }}
           >
             <option />

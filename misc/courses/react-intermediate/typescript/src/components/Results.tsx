@@ -1,6 +1,8 @@
+import { FunctionComponent } from 'react';
+import { Pet as PetType } from '../types/ApiResponsesTypes';
 import Pet from './Pet.jsx';
 
-const Results = ({ pets }) => {
+const Results: FunctionComponent<{ pets: PetType[] }> = ({ pets }) => {
   return (
     <div className="search">
       {!pets.length ? (

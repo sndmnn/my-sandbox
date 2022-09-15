@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Animal, BreedListApiResponse } from '../types/ApiResponsesTypes';
 
-const localCache = {};
+const localCache: {
+  [key: string]: string[];
+} = {};
 
-export default function useBreedList(animal) {
-  const [breeds, setBreeds] = useState([]);
-  const [status, setStatus] = useState('unloaded');
+type Status = 'unloaded' | 'loading' | 'loaded';
+
+export default function useBreedList(animal: Animal) {
+  const [breeds, setBreeds] = useState([] as string[]);
+  const [status, setStatus] = useState('unloaded' as Status);
 
   useEffect(() => {
     if (!animal) {
@@ -16,11 +21,11 @@ export default function useBreedList(animal) {
       setBreeds([]);
       setStatus('loading');
 
-      (async () => {
+      void (async () => {
         const res = await fetch(
           `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
         );
-        const json = await res.json();
+        const json = (await res.json()) as BreedListApiResponse;
 
         localCache[animal] = json.breeds || [];
         setBreeds(localCache[animal]);

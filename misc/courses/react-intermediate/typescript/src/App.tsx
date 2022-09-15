@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { render } from 'react-dom';
 
@@ -7,8 +7,8 @@ import ThemeContext from './contexts/ThemeContext.js';
 import SearchParams from './components/SearchParams.jsx';
 import Details from './components/Details.jsx';
 
-const App = () => {
-  const theme = useState('darkblue');
+const App: FunctionComponent = () => {
+  const [color, setColor] = useState('darkblue');
 
   /*
    * The implicit contract of a React function component it that it
@@ -20,7 +20,7 @@ const App = () => {
    */
   return (
     <div>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={{ color, setColor }}>
         <BrowserRouter>
           <header>
             <Link to="/">Adopt Me!</Link>
