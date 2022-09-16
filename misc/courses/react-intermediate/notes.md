@@ -162,3 +162,15 @@ function Parent() {
 - Server-Side Rendering is used to make a page visible faster, reducing the time to first meaningful paint, but it won't help the time to interactive (and may even make it a little worse);
 
 - Each of these approaches may negatively impact the performance of an application, that's why measuring is important.
+
+# Testing UI Code
+
+- UI code tends to change a lot over the lifecycle of an application, so testing things that are too specific (like the state of a component) can become a task too cumbersome at times, which can make you lazy writing tests;
+
+- It's advisable that you either have well written tests that make you confident about your code, or no tests at all. Having tests that you don't really trust is the worst thing that can happen;
+
+- With that being said, it's better to have a small suite of tests that ensure that general interactions work (things like "the user is able to login" and "the user is able to reset their password"), than trying to test everything and sort of giving up halfway. You should test things that the **user** cares about;
+
+- Test coverage can easily be abused. It's important to remember that the goal of testing is to ensure that *an important part* of your code works as expected, not to get a high number on a metric. Testing coverage is a metric, not an objective;
+
+- Having a low test coverage that covers important things is better than having a high test coverage that you cannot trust, because you wrote your tests just for the sake of having them;
