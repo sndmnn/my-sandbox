@@ -174,3 +174,15 @@ function Parent() {
 - Test coverage can easily be abused. It's important to remember that the goal of testing is to ensure that *an important part* of your code works as expected, not to get a high number on a metric. Testing coverage is a metric, not an objective;
 
 - Having a low test coverage that covers important things is better than having a high test coverage that you cannot trust, because you wrote your tests just for the sake of having them;
+
+# Redux
+
+- Just like `useReducer`, Redux is an alternative to state management in React. The main reason you might want to use Redux is if you have a lot of (somewhat complex) state that must be shared across many components and be testable independently;
+
+- If you want state to be shared, you can use the context API. And if you want state to be testable independently, you can use either `useReducer` or a custom hook;
+
+- Redux does have a small number of use cases in the current state of React, and is generally advised against if `useReducer`, a custom hook or the context API satisfies your needs;
+
+- Redux may cause your code to become hard to follow, making it harder to understand what's happening at a glance;
+
+- With all that said, Redux really shines when you have multiple things combined: the need to share and manage complex state across many components and make that state testable independently. But if you don't have all of those things, you probably don't need, or want, Redux.
