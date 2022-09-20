@@ -186,3 +186,17 @@ function Parent() {
 - Redux may cause your code to become hard to follow, making it harder to understand what's happening at a glance;
 
 - With all that said, Redux really shines when you have multiple things combined: the need to share and manage complex state across many components and make that state testable independently. But if you don't have all of those things, you probably don't need, or want, Redux.
+
+# Tailwind CSS
+
+- Tailwind CSS is a utility-first CSS framework. It's a set of pre-defined classes that you can use to style your markup (it's not meant for just JXS);
+
+- People that like Tailwind CSS tend to like it because it's fairly easy to use and it's fast to write once you get to know a fair ammount of the pre-defined classes. It allows you to pretty much not touch CSS files at all;
+
+- Tailwind has a VSCode extension that adds intellisense to your CSS classes, making it easier to write them. It's called Tailwind CSS IntelliSense and it's available on the [VSCode marketplace](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss);
+
+- Contrary to CSS in JS libraries, Tailwind CSS does not allow programmatic manipulation of your styles. Making it  generally a good fit for projects that do not have a very complex relation between styles and logic;
+
+- Tailwind CSS also allows minimal context switching, which may boost your productivity specially for smaller projects that just need to be executed fast;
+
+- In summary, the compelling thing about Tailwind CSS is that it lets you build something that looks nice with very little effort;
