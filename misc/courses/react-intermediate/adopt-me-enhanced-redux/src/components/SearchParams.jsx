@@ -1,19 +1,41 @@
 import { useState, useEffect } from 'react';
 import useBreedList from '../hooks/useBreedList.js';
-// import ThemeContext from '../contexts/ThemeContext.js';
 import Results from './Results.jsx';
-import useTheme from '../hooks/useTheme.js';
+import { useSelector, useDispatch } from 'react-redux';
+import changeAnimal from '../redux/action-creators/changeAnimal';
+import changeBreed from '../redux/action-creators/changeBreed';
+import changeTheme from '../redux/action-creators/changeTheme';
+import changeLocation from '../redux/action-creators/changeLocation';
 
 const ANIMALS = ['bird', 'cat', 'dog', 'rabbit', 'reptile'];
 
 const SearchParams = () => {
-  const [location, setLocation] = useState('');
-  const [animal, setAnimal] = useState('');
-  const [breed, setBreed] = useState('');
+  /**
+   * `state` is the entire state object from the Redux store. `useSelector` receives
+   * a function that has the `state` object passed to it as an argument and returns
+   * the part of that state that you're concerned about.
+   *
+   * It's important to point out that each key in the state object is assigned according
+   * to the names we gave at the `combineReducers` call in `redux/reducers/index.js`.
+   */
+  const animal = useSelector((state) => state.animal);
+  const location = useSelector((state) => state.location);
+  const breed = useSelector(({ breed }) => breed);
+  const themeColor = useSelector(({ theme }) => theme.color);
+  const dispatch = useDispatch();
+
+  /**
+   * This is a bad idea, because Redux is going to use the function `useSelector`
+   * receives as the subscription function to "bind" your component to the changes
+   * in the Redux store.
+   *
+   * Writing it this way will cause `SearchParams` to re-render every time anything
+   * in the Redux store changes, which is generally not what you want.
+   */
+  // const state = useSelector((state) => state);
+
   const [pets, setPets] = useState([]);
-  const { breeds } = useBreedList();
-  // const [color]  = useContext(ThemeContext);
-  const [themeColor, setThemeColor] = useTheme();
+  const { breeds } = useBreedList(animal);
 
   useEffect(() => {
     requestPets();
@@ -43,7 +65,7 @@ const SearchParams = () => {
             id="location"
             value={location}
             placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
+            onChange={(e) => dispatch(changeLocation(e.target.value))}
           />
         </label>
         <label htmlFor="animal">
@@ -52,12 +74,10 @@ const SearchParams = () => {
             id="animal"
             value={animal}
             onChange={(e) => {
-              setAnimal(e.target.value);
-              setBreed('');
+              dispatch(changeAnimal(e.target.value));
             }}
             onBlur={(e) => {
-              setAnimal(e.target.value);
-              setBreed('');
+              dispatch(changeAnimal(e.target.value));
             }}
           >
             <option />
@@ -74,10 +94,10 @@ const SearchParams = () => {
             id="breed"
             value={breed}
             onChange={(e) => {
-              setBreed(e.target.breed);
+              dispatch(changeBreed(e.target.value));
             }}
             onBlur={(e) => {
-              setBreed(e.target.breed);
+              dispatch(changeBreed(e.target.value));
             }}
           >
             <option />
@@ -92,8 +112,8 @@ const SearchParams = () => {
           Theme
           <select
             value={themeColor}
-            onChange={(e) => setThemeColor(e.target.value)}
-            onBlur={(e) => setThemeColor(e.target.value)}
+            onChange={(e) => dispatch(changeTheme(e.target.value))}
+            onBlur={(e) => dispatch(changeTheme(e.target.value))}
           >
             <option value="peru">Peru</option>
             <option value="darkblue">Dark Blue</option>

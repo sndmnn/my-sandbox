@@ -1,21 +1,11 @@
 import { Component } from 'react';
 import { useParams } from 'react-router-dom';
-
-import ThemeContext from '../contexts/ThemeContext.js';
-
+import { connect } from 'react-redux';
 import Carousel from './Carousel.jsx';
 import ErrorBoundary from './ErrorBoudary.jsx';
 import Modal from './Modal.jsx';
 
 class Details extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     loading: true,
-  //   };
-  // }
-
   state = { loading: true };
 
   async componentDidMount() {
@@ -43,20 +33,14 @@ class Details extends Component {
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
-          <ThemeContext.Consumer>
-            {(contextValue) => {
-              const [color] = contextValue;
 
-              return (
-                <button
-                  style={{ backgroundColor: color }}
-                  onClick={this.toggleModal}
-                >
-                  Adopt {name}
-                </button>
-              );
-            }}
-          </ThemeContext.Consumer>
+          <button
+            style={{ backgroundColor: this.props.theme.color }}
+            onClick={this.toggleModal}
+          >
+            Adopt {name}
+          </button>
+
           <p>{description}</p>
           {showModal && (
             <Modal>
@@ -75,20 +59,20 @@ class Details extends Component {
   }
 }
 
-// const WrappedDetails = () => {
-//   const params = useParams();
+/**
+ * You could just use `useSelector` inside `WrappedDetails` and pass in `theme`
+ * as a prop to `Details`, but this is an example of the old way of doing Redux
+ * things.
+ */
+const mapStateToProps = ({ theme }) => ({ theme });
+const ReduxWrappedDetails = connect(mapStateToProps)(Details);
 
-//   return <Details params={params} />;
-// };
-
-// This way it's possible to receive other properties and pass
-// them down to <Details />
 const WrappedDetails = (props) => {
   const params = useParams();
 
   return (
     <ErrorBoundary>
-      <Details params={params} {...props} />
+      <ReduxWrappedDetails params={params} {...props} />
     </ErrorBoundary>
   );
 };
