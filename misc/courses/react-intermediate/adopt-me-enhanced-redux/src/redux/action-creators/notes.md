@@ -1,0 +1,1 @@
+- Action creators are functions that craft `action` objects. They're a pattern for creating actions. Though they're not required to use Redux, they're a convenient and allow you to be pretty defensive about your code.
