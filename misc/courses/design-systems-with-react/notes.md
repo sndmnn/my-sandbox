@@ -1,6 +1,5 @@
 The design system created for this course can be found [on this figma file](https://www.figma.com/file/jAZRIBiThidlADZWJgaWHL/design-systems-with-react-and-storybook).
 
-
 # Notes
 
 ## What's a Design System?
