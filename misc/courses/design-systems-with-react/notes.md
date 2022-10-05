@@ -169,5 +169,25 @@ The design system created for this course can be found [on this figma file](http
 
 - When sizing buttons you can use the eight points rule, or increments of four depending on the font-size of the label and the button itself;
 
+## Micro-interactions
+---
 
+- Micro-interactions are small animations whose purpose is to delight the user by providing feedback in regards to a task or inform the user about the status of a process or task;
 
+- These small animations can help with a few things:
+
+    1. **Perceived Performance:** animations can alter a user's perceived sense of time (distracting them from the fact that a task is taking time to be executed). Users are willing to wait longer for a task to be executed if they have a sense that something's happening;
+
+    2. **Task Status:** we can use animations to inform the user about the status of a certain task. If, for instance, the user is waiting on a transaction to be completed we can show them animations that represent the current status of that transaction (requested, processing, completed successfully or unsuccessfully);
+
+    3. **State Change:** if a user is filling out a form and enters information that is incorrect, we can use micro-interactions to draw their attention to the fact that a certain field's information needs to be corrected prior to submission;
+
+    4. **Draw Attention:** we can use micro-interaction to draw the user's attention to something that's happening at the moment, like an animation idicating that someone is typing in a chat application;
+
+    5. **Create Habits:** animations can also help forming habits in our users by showing a delightful animation when they perform an action that we want to be repeated;
+
+    6. **Delight Users:** micro-interactions can also help retaining users during a boring task, such as setting up an account or filling a long form.
+
+- Though micro-interactions are great and can serve many purposes, it's easy to overuse them, polluting our UI with excessive stimuli, that is, creating noise and causing the user to lose focus on what matters at that time;
+
+- As a rule of thumb, animations should be accessible, intentional (you should animate things with purpose), relatable (they must feel like they're part of the real world) and they must not impact user's ability to go abot their business;
