@@ -89,9 +89,17 @@ export default createGlobalStyle`
     /* ================== */
     --font-sans: 'Roboto', sans-serif;
 
+    --type-scale-h1: 3.052rem;
+    --type-scale-h2: 2.441rem;
+    --type-scale-h3: 1.953rem;
+    --type-scale-h4: 1.563rem;
+    --type-scale-h5: 1.25rem;
+    --type-scale-p: 1rem;
+
     /* ==== Shadows ==== */
     /* ================= */
     --shadow-resting-button: 0 2px 5px 2px rgba(0, 0, 0, 0.25);
     --shadow-active-button: 0 1px 5px 1px rgba(0, 0, 0, 0.25);
+    --shadow-modal: 0 5px 16px 0 rgba(0, 0, 0, 0.25);
   }
 `;
