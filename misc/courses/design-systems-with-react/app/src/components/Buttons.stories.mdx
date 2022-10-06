@@ -1,0 +1,45 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { boolean } from '@storybook/addon-knobs';
+import { PrimaryButton, SecondaryButton, TertiaryButton } from './Buttons';
+
+<Meta title="Design System | Buttons" component={PrimaryButton} />
+
+# Buttons
+
+Buttons are used to trigger actions within an application.
+
+## Usage
+
+Buttons are used to trigger internal actions within your web applications.
+
+## Primary Buttons
+
+Primary buttons are used as a call to action and indicate the most important action on a page.
+
+<Preview withToolbar>
+  <Story name="Primary">
+    <PrimaryButton
+      onClick={action('button-click')}
+      disabled={boolean('Disabled', false)}
+    >
+      Primary Button
+    </PrimaryButton>
+  </Story>
+</Preview>
+
+## Secondary Buttons
+
+Primary buttons are used as a call to action and indicate the most important action on a page.
+
+<Story name="Secondary">
+  <SecondaryButton>Secondary Button</SecondaryButton>
+</Story>
+
+## Tertiary Buttons
+
+Primary buttons are used as a call to action and indicate the most important action on a page.
+
+<Story name="Tertiary">
+  <TertiaryButton>Tertiary Button</TertiaryButton>
+</Story>
