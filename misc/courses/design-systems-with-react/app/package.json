@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "parcel -p 3000 src/index.html",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "sb": "start-storybook -p 4010 --no-open",
+    "sb:docs": "start-storybook -p 4010 --docs --no-manager-cache",
+    "sb:build": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
