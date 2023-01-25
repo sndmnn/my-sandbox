@@ -1,0 +1,20 @@
+{
+  "name": "pdf-converter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Henrique Cotta",
+  "license": "MIT",
+  "scripts": {
+    "up": "nodemon ./src/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "@pdftron/pdfnet-node": "^8.1.0",
+    "directory-tree": "^2.2.7"
+  }
+}
