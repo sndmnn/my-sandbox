@@ -14,7 +14,7 @@ https://github.com/sndmnn/my-sandbox/assets/50667385/8a03fb9b-cb82-4fa7-929a-679
 
 I have a hook [`useSidePanels`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/hooks/useSidePanels.tsx) that encapsulates the logic for managing side panels. It's responsible for keeping track of a "side panel stack" as I call it, which is an array of objects that represent the panels that are currently open. This array is tracked by React via `useState` and every item in the array is a `JSX.Element` that represents the panel.
 
-Panels are added to the stack by calling the function `pushPanel` returned by the hook. This function takes a title for the panel as well as a `JSX.Element` representing the contents of the panel and wraps it in a "panel container" with a navigation bar at the top, which has its controls adjusted based on the number of panels in the stack (e.g. the back button is hidden if there's only one panel). This "panel container" is a styled component called [`SidePanelContainer`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/components/SidePanel/SidePanel.styles.ts) responsible for adjusting the panel's dimensions and positioning on the screen (on small screens the panel is fixed at the bottom of the screen, on larger screens it's fixed at the right side of the screen).
+Panels are added to the stack by calling the function `pushPanel` returned by the hook. This function takes a `JSX.Element` representing the contents of the panel and wraps it in a "panel container" with a navigation bar at the top, which has its controls adjusted based on the number of panels in the stack (e.g. the back button is hidden if there's only one panel). This "panel container" is a styled component called [`SidePanelContainer`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/components/SidePanel/SidePanel.styles.ts) responsible for adjusting the panel's dimensions and positioning on the screen (on small screens the panel is fixed at the bottom of the screen, on larger screens it's fixed at the right side of the screen).
 
 ```tsx
 function useSidePanels() {
@@ -78,7 +78,7 @@ function MyComponent() {
 
 My problem is that whenever `MyPanelContent`, however it may be called, receives props that change state, the side panel doesn't re-render.
 
-Below is the code for the example in the video. I won't go into details about the [`useSearchControls`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/hooks/useSearchControls.ts) hook, but what's relevant to this problem is that it returns an object with a property `sort` that contains information about the current sort state (e.g. by which property the data is sorted and in which order, which may be 'asc' or 'desc') and a function `updateSort` that can be called to update the sort state.
+Below is the code for the example in the first video. I won't go into details about the [`useSearchControls`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/hooks/useSearchControls.ts) hook, but what's relevant to this problem is that it returns an object with a property `sort` that contains information about the current sort state (e.g. by which property the data is sorted and in which order, which may be 'asc' or 'desc') and a function `updateSort` that can be called to update the sort state.
 
 ```tsx
 export default function ToDos() {
@@ -165,13 +165,13 @@ export default function ToDos() {
 }
 ```
 
-I would expect that when the sort configuration is updated, the `SortToDos` component would re-render and display the new sort configuration. However, this is not the case. The `ToDosList` is updated, and elements are sorted correctly, but the side panel doesn't re-render.
+When the sort configuration is updated, I would expect the `SortToDos` component to re-render and display the new sort configuration. However, this is not the case. The `ToDosList` is updated, and elements are sorted correctly, but the side panel doesn't re-render.
 
 I know that `useSearchControls` is working correctly because if I place `SortToDos` directly in the parent component instead of pushing it as a panel, it re-renders correctly.
 
 https://github.com/sndmnn/my-sandbox/assets/50667385/4b1d92fb-749e-46da-a9f1-9658bec058dc
 
-Code for the example in the video:
+Code for the example in the video above:
 
 ```tsx
 export default function ToDos() {
@@ -256,4 +256,4 @@ This is strange to me because I would think that after `searchControls.updateSor
 </>
 ```
 
-I'm strugging to understand exactly what's happening so I can fix my solution for side panels. I would appreciate any help or guidance you can provide. Thank you!
+I'm struggling to understand exactly what's happening so I can fix my solution for side panels. I would appreciate any help or guidance you can provide. Thank you!
