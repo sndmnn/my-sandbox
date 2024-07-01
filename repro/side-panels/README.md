@@ -4,7 +4,7 @@ To start the project, run `npm run start` in the root directory.
 
 # The Problem
 
-## A Quick Glance
+## A Quick Glance at the Problem
 
 Side panels don't seem to be re-rendering when state changes. You can see that the list is being updated in the background, but the icons in the side panel are only updated after closing and reopening the panel.
 
@@ -226,7 +226,6 @@ export default function ToDos() {
 }
 ```
 
-
 This is strange to me because I would think that after `searchControls.updateSort` is called, `ToDos` would re-render since there's a state update inside of it (`searchControls.updateSort` calls a "setState" function, "setState" meaning `React.useState()[1]`). And the resulting component tree would look pretty much the same as above.
 
 ```tsx
@@ -248,14 +247,12 @@ This is strange to me because I would think that after `searchControls.updateSor
     </ToDosList>
   </PageContent>
 
-  {sidePanels.panels.length > 0 && (
-    <SidePanelStack>
-      <SortToDos
-        updateSort={searchControls.updateSort}
-        sort={searchControls.sort}
-      />
-    </SidePanelStack>
-  )}
+  <SidePanelStack>
+    <SortToDos
+      updateSort={searchControls.updateSort}
+      sort={searchControls.sort}
+    />
+  </SidePanelStack>
 </>
 ```
 
