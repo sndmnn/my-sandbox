@@ -14,7 +14,7 @@ https://github.com/sndmnn/my-sandbox/assets/50667385/8a03fb9b-cb82-4fa7-929a-679
 
 I have a hook [`useSidePanels`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/hooks/useSidePanels.tsx) that encapsulates the logic for managing side panels. It's responsible for keeping track of a "side panel stack" as I call it, which is an array of objects that represent the panels that are currently open. This array is tracked by React via `useState` and every item in the array is a `JSX.Element` that represents the panel.
 
-Panels are added to the stack by calling the function `pushPanel` returned by the hook. This function takes a title for the panel as well as a `JSX.Element` representing the contents of the panel and wraps it in a "panel container" with a navigation bar at the top, which has its controls adjusted based on the number of panels in the stack (e.g. the back button is hidden if there's only one panel). This "panel container" is a styled component called [`SidePanelContainer`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/components/SidePanel/SidePanel.styles.ts) responsible for adjusting the panels dimensions and positioning on the screen (on small screens the panel is fixed at the bottom of the screen, on larger screens it's fixed at the right side of the screen).
+Panels are added to the stack by calling the function `pushPanel` returned by the hook. This function takes a title for the panel as well as a `JSX.Element` representing the contents of the panel and wraps it in a "panel container" with a navigation bar at the top, which has its controls adjusted based on the number of panels in the stack (e.g. the back button is hidden if there's only one panel). This "panel container" is a styled component called [`SidePanelContainer`](https://github.com/sndmnn/my-sandbox/blob/main/repro/side-panels/src/components/SidePanel/SidePanel.styles.ts) responsible for adjusting the panel's dimensions and positioning on the screen (on small screens the panel is fixed at the bottom of the screen, on larger screens it's fixed at the right side of the screen).
 
 ```tsx
 function useSidePanels() {
@@ -169,6 +169,10 @@ I would expect that when the sort configuration is updated, the `SortToDos` comp
 
 I know that `useSearchControls` is working correctly because if I place `SortToDos` directly in the parent component instead of pushing it as a panel, it re-renders correctly.
 
+https://github.com/sndmnn/my-sandbox/assets/50667385/4b1d92fb-749e-46da-a9f1-9658bec058dc
+
+Code for the example in the video:
+
 ```tsx
 export default function ToDos() {
   const [todos, setTodos] = React.useState<ToDo[]>([
@@ -221,6 +225,7 @@ export default function ToDos() {
   );
 }
 ```
+
 
 This is strange to me because I would think that after `searchControls.updateSort` is called, `ToDos` would re-render since there's a state update inside of it (`searchControls.updateSort` calls a "setState" function, "setState" meaning `React.useState()[1]`). And the resulting component tree would look pretty much the same as above.
 
