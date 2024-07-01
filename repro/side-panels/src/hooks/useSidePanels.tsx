@@ -31,12 +31,11 @@ export default function useSidePanels() {
   }, []);
 
   /**
-   * Pushes a new panel to the stack. If the window is too small, it will navigate
-   * to the expandUrl instead.
+   * Pushes a new panel to the stack.
    *
-   * @param content
-   * @param title
-   * @param expandUrl
+   * @param content JSX element to render in the panel
+   * @param title Title of the panel
+   * @param expandUrl (optional) URL to navigate to when the expand button is clicked
    */
   function pushPanel(content: JSX.Element, title: string, expandUrl?: string) {
     setPanels((panels) => {
@@ -62,6 +61,9 @@ export default function useSidePanels() {
     });
   }
 
+  /**
+   * Pops the top panel from the stack.
+   */
   function popPanel() {
     setPanels((panels) => {
       const newPanels = [...panels];
@@ -70,6 +72,9 @@ export default function useSidePanels() {
     });
   }
 
+  /**
+   * Clears all panels from the stack.
+   */
   function clearPanels() {
     setPanels([]);
   }

@@ -64,6 +64,8 @@ export interface UpdateFilterMap<D> {
  * @param initialSort initial sort to be used in the search controls
  *
  * @returns
+ * An object containing the following properties:
+ *
  * `data` - the processed data after filtering and sorting
  *
  * `updateData` - function to update the data in the hook
