@@ -1,0 +1,1 @@
+My solution would be to wrap it in a context
