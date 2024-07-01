@@ -1,0 +1,26 @@
+{
+  "name": "website-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "docker compose -f docker-compose.yml up -d",
+    "stop": "docker compose -f docker-compose.yml down",
+    "build": "node .internals/tools/projectAssembler.mjs ",
+    "assemble": "node .internals/scripts/assemble.mjs ",
+    "build:zip": "node .internals/scripts/buildZip.mjs ",
+    "build:docker": "node .internals/scripts/buildDocker.mjs ",
+    "dev:api": "node .internals/scripts/apiModeDevelopment.mjs "
+  },
+  "devDependencies": {
+    "acorn": "^8.8.2",
+    "acorn-walk": "^8.2.0",
+    "archiver": "^5.3.1",
+    "consola": "^3.0.0-3",
+    "handlebars": "^4.7.7",
+    "minimist": "^1.2.8",
+    "yaml": "^2.2.1"
+  },
+  "dependencies": {}
+}

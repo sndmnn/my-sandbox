@@ -1,0 +1,12 @@
+{
+  "srcFolder": "src",
+  "lambdaFolder": "lambda",
+  "codeExtensions": [".js", ".jsx", ".ts", ".tsx"],
+  "ecmaVersion": "2020",
+  "dockerBuildScript": "build.sh",
+  "apiModeLambdasFolder": "api-lambdas",
+  "apiRoutes": {
+    "/create-user": "src/handlers/createUser/index.js",
+    "/list-users": "src/handlers/listUsers/index.js"
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  create-user:
+    build:
+      context: /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker
+      dockerfile: /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker/Dockerfile
+      args:
+        ENTRY_POINT: handlers/createUser/index.js
+        LAMBDA_FOLDER: api-lambdas/create-user
+    volumes:
+      - /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker/api-lambdas/create-user:/var/task/lambda:ro
+  list-users:
+    build:
+      context: /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker
+      dockerfile: /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker/Dockerfile
+      args:
+        ENTRY_POINT: handlers/listUsers/index.js
+        LAMBDA_FOLDER: api-lambdas/list-users
+    volumes:
+      - /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker/api-lambdas/list-users:/var/task/lambda:ro
+  nginx:
+    image: nginx
+    ports:
+      - 3000:80
+    volumes:
+      - /home/sndmnn/dev/my-sandbox/pocs/aws-lambda-with-docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
