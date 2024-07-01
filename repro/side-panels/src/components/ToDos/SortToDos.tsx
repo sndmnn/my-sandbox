@@ -35,10 +35,10 @@ export default function SortStockRequests({
     <SortContainer>
       <button className="sort-button" onClick={handleSortByTitle}>
         <span>Title</span>
-        {sort.by === 'Title' && sort.order === 'asc' && (
+        {sort.by === 'title' && sort.order === 'asc' && (
           <ArrowUpIcon className="order" />
         )}
-        {sort.by === 'Title' && sort.order === 'desc' && (
+        {sort.by === 'title' && sort.order === 'desc' && (
           <ArrowDownIcon className="order" />
         )}
       </button>
