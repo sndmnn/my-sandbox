@@ -46,8 +46,10 @@ export default function useSidePanels() {
     setPanels((panels) => {
       const newPanels = [...panels];
 
+      const key = Math.random();
+
       const newPanel = (
-        <SidePanelContainer key={Math.random()}>
+        <SidePanelContainer key={key}>
           <SidePanelNavigationBar
             title={title}
             expandUrl={expandUrl}

@@ -2,33 +2,45 @@ import React from 'react';
 import useSearchControls from '../../hooks/useSearchControls';
 import useSidePanels from '../../hooks/useSidePanels';
 import ToDo from '../../models/ToDo';
-import ToDosAPI from '../../api/ToDosAPI';
 import { byId } from '../../utils/toDosOrderFunctions';
 import SortToDos from './SortToDos';
-import { StandardSearchControls } from '../Containers/StandardSearchControls';
-import SearchBar from '../SearchBar/SearchBar';
 import { TertiaryButton } from '../Buttons/TertiaryButton';
 import { SortIcon } from '../../icons';
 import { PageContent, ToDosList } from './ToDos.styles';
 import { SidePanelStack } from '../SidePanel/SidePanelStack';
 
 export default function ToDos() {
-  const [todos, setTodos] = React.useState<ToDo[]>([]);
+  // This data would normally come from an API, but for the sake of simplicity
+  // we're just using a static array.
+  const [todos, setTodos] = React.useState<ToDo[]>([
+    {
+      id: 1,
+      title: 'Buy groceries',
+      completed: false,
+    },
+    {
+      id: 2,
+      title: 'Walk the dog',
+      completed: true,
+    },
+    {
+      id: 3,
+      title: 'Do laundry',
+      completed: false,
+    },
+  ]);
 
   const sidePanels = useSidePanels();
 
+  /* I'm using the useSearchControls hook to manage the sort. It's initialized with
+   * the data, the filter configuration and the sort configuration.
+   *
+   * I'm not using the filter functionality in this example to keep it simple. And
+   * the initial sort configuration is by id, ascending.
+   */
   const searchControls = useSearchControls<ToDo>(
     todos,
-    {
-      search: {
-        term: '',
-        filterFn: (item, searchTerm) => {
-          return item.title
-            .toLowerCase()
-            .includes((searchTerm as string).toLowerCase());
-        },
-      },
-    },
+    {},
     {
       by: 'id',
       order: 'asc',
@@ -36,23 +48,11 @@ export default function ToDos() {
     },
   );
 
-  React.useEffect(() => {
-    const newToDos = ToDosAPI.getToDos();
-    setTodos(newToDos);
-
-    searchControls.updateData(newToDos);
-  }, []);
-
-  function handleSearch(searchTerm: string) {
-    searchControls.setFilters({ search: { term: searchTerm } });
-  }
-
-  function handleClear() {
-    searchControls.setFilters({ search: { term: '' } });
-  }
-
   function handleSort() {
     sidePanels.pushPanel(
+      /* SortToDos will manipulate the sort configuration by calling `searchControls.updateSort`
+       * and it will use `searchControls.sort` to display the current sort configuration.
+       */
       <SortToDos
         updateSort={searchControls.updateSort}
         sort={searchControls.sort}
@@ -64,21 +64,12 @@ export default function ToDos() {
   return (
     <>
       <PageContent>
-        <StandardSearchControls>
-          <SearchBar
-            className="search-bar"
-            minCharacters={0}
-            onSearch={handleSearch}
-            onClear={handleClear}
-          />
+        <TertiaryButton onClick={handleSort}>
+          <SortIcon />
+          <span>Sort</span>
+        </TertiaryButton>
 
-          <div className="buttons">
-            <TertiaryButton onClick={handleSort}>
-              <SortIcon />
-              <span>Sort</span>
-            </TertiaryButton>
-          </div>
-        </StandardSearchControls>
+        <br />
 
         <ToDosList>
           {searchControls.data.map((todo) => (
@@ -88,6 +79,8 @@ export default function ToDos() {
           ))}
         </ToDosList>
       </PageContent>
+
+      {/* SortToDos will be displayed here once the `SortButton` is clicked */}
       {sidePanels.panels.length > 0 && (
         <SidePanelStack>{sidePanels.panels.at(-1)}</SidePanelStack>
       )}

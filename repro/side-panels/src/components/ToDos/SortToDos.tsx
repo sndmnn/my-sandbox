@@ -18,6 +18,7 @@ export default function SortStockRequests({
     updateSort({
       by: 'title',
       order:
+        // If the current sort is by title, toggle the order. Else, set it to ascending
         sort.by === 'title' ? (sort.order === 'asc' ? 'desc' : 'asc') : 'asc',
       sortFn: byTitle,
     });
@@ -26,7 +27,9 @@ export default function SortStockRequests({
   function handleSortById() {
     updateSort({
       by: 'id',
-      order: sort.by === 'id' ? (sort.order === 'asc' ? 'desc' : 'asc') : 'asc',
+      order:
+        // If the current sort is by id, toggle the order. Else, set it to ascending
+        sort.by === 'id' ? (sort.order === 'asc' ? 'desc' : 'asc') : 'asc',
       sortFn: byId,
     });
   }
