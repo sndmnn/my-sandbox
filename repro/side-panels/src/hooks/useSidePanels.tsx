@@ -13,10 +13,6 @@ export type PushPanelFunction = (
 
 export type PopPanelFunction = () => void;
 
-/**
- * Hook that wraps the logic to manage side panels. It's designed to avoid using
- * contexts, as they proved not to be the best solution for this case.
- */
 export default function useSidePanels() {
   const [panels, setPanels] = React.useState<JSX.Element[]>([]);
 
