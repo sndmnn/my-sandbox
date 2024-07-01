@@ -167,7 +167,7 @@ export default function ToDos() {
 
 I would expect that when the sort configuration is updated, the `SortToDos` component would re-render and display the new sort configuration. However, this is not the case. The `ToDosList` is updated, and elements are sorted correctly, but the side panel doesn't re-render.
 
-What's confusing me is that if I place `SortToDos` directly in the parent component instead of pushing it as panel, it re-renders correctly.
+I know that `useSearchControls` is working correctly because if I place `SortToDos` directly in the parent component instead of pushing it as a panel, it re-renders correctly.
 
 ```tsx
 export default function ToDos() {
@@ -254,4 +254,4 @@ This is strange to me because I would think that after `searchControls.updateSor
 </>
 ```
 
-In my understading, `searchControls.sort` is captured inside `handleSort` and `SortToDos` is pushed to `sidePanels.panels` as a new panel. `sidePanels.panels` is never updated, and so wouldn't re-render. That makes sense to me. However, the parent component `ToDos` should re-render when `searchControls.updateSort` is called, and so should every child component, including `SortToDos`.
+I'm strugging to understand exactly what's happening so I can fix my solution for side panels. I would appreciate any help or guidance you can provide. Thank you!
