@@ -57,7 +57,6 @@ export default function ToDos() {
         updateSort={searchControls.updateSort}
         sort={searchControls.sort}
       />,
-      'Sort',
     );
   }
 

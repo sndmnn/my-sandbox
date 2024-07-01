@@ -5,8 +5,6 @@ import BackIcon from '@mui/icons-material/ArrowBack';
 import { DefaultButton } from '../Buttons/DefaultButton';
 
 interface ComponentProps {
-  title: string;
-  expandUrl?: string;
   onClose: () => void;
   onBack?: () => void;
 }
@@ -26,8 +24,6 @@ interface ComponentProps {
  * this function if the side panel is the first one in the stack.
  */
 export default function SidePanelNavigationBar({
-  title,
-  expandUrl,
   onClose,
   onBack,
 }: ComponentProps) {

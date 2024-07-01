@@ -34,10 +34,8 @@ export default function useSidePanels() {
    * Pushes a new panel to the stack.
    *
    * @param content JSX element to render in the panel
-   * @param title Title of the panel
-   * @param expandUrl (optional) URL to navigate to when the expand button is clicked
    */
-  function pushPanel(content: JSX.Element, title: string, expandUrl?: string) {
+  function pushPanel(content: JSX.Element) {
     setPanels((panels) => {
       const newPanels = [...panels];
 
@@ -46,8 +44,6 @@ export default function useSidePanels() {
       const newPanel = (
         <SidePanelContainer key={key}>
           <SidePanelNavigationBar
-            title={title}
-            expandUrl={expandUrl}
             onClose={clearPanels}
             {...(newPanels.length > 0 && { onBack: popPanel })}
           />
