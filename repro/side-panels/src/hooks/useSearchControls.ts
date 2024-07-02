@@ -12,7 +12,7 @@ export type SortOrder = 'asc' | 'desc';
 export type SortFn<D> = (data: D[], order: SortOrder | undefined) => D[];
 
 /**
- * A sort object that contains usefult reference information for the way data
+ * A sort object that contains useful reference information for the way data
  * should be sorted, as well as the sort function to be used. Useful to update
  * the UI according to the current sort state.
  */
@@ -40,7 +40,7 @@ export interface Filter<D> {
 
 /**
  * A map of filter keys to filter objects. The filter key is used to identify the
- * filter and the filter object contains the term and the filter function.
+ * filter and the filter object that contains the term and the filter function.
  */
 export interface FilterMap<D> {
   [key: string]: Filter<D>;
