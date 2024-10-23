@@ -6,40 +6,40 @@ const VerifyRelation = require('../models/VerifyRelation');
 /**
  * @param {TestCase[]} testCases
  * @param {VerifyRelation[]} verifyRelations
- * @param {SheetRequirement[]} requirements
+ * @param {SheetRequirement[]} sheetRequirements
  * @returns {Requirement[]} Linked requirements
  */
-function linkTestCasesToRequirements(testCases, verifyRelations, requirements) {
+function linkTestCasesToRequirements(
+  testCases,
+  verifyRelations,
+  sheetRequirements
+) {
   let linkedRequirements = {};
 
-  for (let i = 0; i < verifyRelations.length; i++) {
-    const verifyRelation = verifyRelations[i];
+  for (let i = 0; i < sheetRequirements.length; i++) {
+    const sheetRequirement = sheetRequirements[i];
 
-    const foundRequirement = requirements.find(
-      (requirement) => requirement.id === verifyRelation.to
+    linkedRequirements[sheetRequirement.id] = new Requirement({
+      globalId: sheetRequirement.id,
+      requirementId: sheetRequirement.requirementId,
+      name: sheetRequirement.name,
+      text: sheetRequirement.text,
+      childRequirements: [],
+      testCases: [],
+    });
+
+    const verifyRelation = verifyRelations.find(
+      (verifyRelation) => verifyRelation.to === sheetRequirement.id
     );
+
+    if (typeof verifyRelation === 'undefined') continue;
+
     const foundTestCase = testCases.find(
       (testCase) => testCase.globalId === verifyRelation.from
     );
 
-    if (
-      typeof foundRequirement !== 'undefined' &&
-      typeof foundTestCase !== 'undefined'
-    ) {
-      if (typeof linkedRequirements[foundRequirement.id] === 'undefined') {
-        const newRequirement = new Requirement({
-          globalId: foundRequirement.id,
-          requirementId: foundRequirement.requirementId,
-          name: foundRequirement.name,
-          text: foundRequirement.text,
-          childRequirements: [],
-          testCases: [foundTestCase],
-        });
-
-        linkedRequirements[foundRequirement.id] = newRequirement;
-      } else {
-        linkedRequirements[foundRequirement.id].testCases.push(foundTestCase);
-      }
+    if (typeof foundTestCase !== 'undefined') {
+      linkedRequirements[sheetRequirement.id].testCases.push(foundTestCase);
     }
   }
 
