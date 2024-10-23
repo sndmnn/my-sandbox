@@ -1,5 +1,5 @@
 const SimpleSheet = require('./SimpleSheet');
-const Requirement = require('./SheetRequirement');
+const SheetRequirement = require('./SheetRequirement');
 const TestCase = require('./SheetTestCase');
 const VerifyRelation = require('./VerifyRelation');
 const DeriveRelation = require('./DeriveRelation');
@@ -23,19 +23,22 @@ const headerMap = {
   'Supplier': 13,
   'Client': 14,
   'Visibility': 15,
-  'Parent User ID': 16,
-  'Requirement_Text': 17,
-  'Requirement_ID': 18,
-  'Requirement_source': 19,
-  'Requirement_kind': 20,
-  'Requirement_verifyMethod': 21,
-  'Requirement_risk': 22,
-  'Requirement_status': 23,
-  'Diagram ID': 24,
-  'Diagram Name': 25,
-  'Parent ID': 26,
-  'Parent Name': 27,
-  'Delete ?': 28,
+  'Abstract': 16,
+  'Leaf': 17,
+  'Root': 18,
+  'Parent User ID': 19,
+  'Requirement_Text': 20,
+  'Requirement_ID': 21,
+  'Requirement_source': 22,
+  'Requirement_kind': 23,
+  'Requirement_verifyMethod': 24,
+  'Requirement_risk': 25,
+  'Requirement_status': 26,
+  'Diagram ID': 27,
+  'Diagram Name': 28,
+  'Parent ID': 29,
+  'Parent Name': 30,
+  'Delete ?': 31,
 };
 
 module.exports = class WMSRequirementsSheet extends SimpleSheet {
@@ -82,13 +85,13 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
   }
 
   _rowToRequirement(row) {
-    return new Requirement({
+    return new SheetRequirement({
       id: this.getCellValue(row, 'ID'),
       name: this.getCellValue(row, 'Name'),
       text: this.getCellValue(row, 'Requirement_Text'),
       status: this.getCellValue(row, 'Requirement_status'),
       requirementId: this.getCellValue(row, 'Requirement_ID'),
-      parentId: this.getCellValue(row, 'Parent User ID'),
+      parentId: this.getCellValue(row, 'Parent ID'),
     });
   }
 

@@ -1,4 +1,4 @@
-const Requirement = require('../models/Requirement');
+const RequirementWithTests = require('../models/RequirementWithTests');
 const { TestCase } = require('../models/TestCase');
 const SheetRequirement = require('../models/SheetRequirement');
 const VerifyRelation = require('../models/VerifyRelation');
@@ -7,7 +7,7 @@ const VerifyRelation = require('../models/VerifyRelation');
  * @param {TestCase[]} testCases
  * @param {VerifyRelation[]} verifyRelations
  * @param {SheetRequirement[]} sheetRequirements
- * @returns {Requirement[]} Linked requirements
+ * @returns {RequirementWithTests[]} Linked requirements
  */
 function linkTestCasesToRequirements(
   testCases,
@@ -19,7 +19,7 @@ function linkTestCasesToRequirements(
   for (let i = 0; i < sheetRequirements.length; i++) {
     const sheetRequirement = sheetRequirements[i];
 
-    linkedRequirements[sheetRequirement.id] = new Requirement({
+    linkedRequirements[sheetRequirement.id] = new RequirementWithTests({
       globalId: sheetRequirement.id,
       requirementId: sheetRequirement.requirementId,
       name: sheetRequirement.name,
