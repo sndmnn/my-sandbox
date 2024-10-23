@@ -1,4 +1,4 @@
-class TestCase {
+class SheetTestCase {
   /**
    * @param {String} params.id Global ID
    * @param {String} params.name Test case name
@@ -11,4 +11,4 @@ class TestCase {
   }
 }
 
-module.exports = TestCase;
+module.exports = SheetTestCase;

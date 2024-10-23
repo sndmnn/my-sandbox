@@ -1,6 +1,6 @@
 const SimpleSheet = require('./SimpleSheet');
-const Requirement = require('./Requirement');
-const TestCase = require('./TestCase');
+const Requirement = require('./SheetRequirement');
+const TestCase = require('./SheetTestCase');
 const VerifyRelation = require('./VerifyRelation');
 const DeriveRelation = require('./DeriveRelation');
 const Note = require('./Note');
@@ -42,67 +42,6 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
   constructor(content) {
     super(headerMap, content);
   }
-
-  // extractRequirements() {
-  //   const requirements = [];
-
-  //   for (let i = 1; i < this.content.length; i++) {
-  //     const what = this.getCellValue(i, 'What');
-
-  //     if (what !== 'Requirement') continue;
-
-  //     requirements.push(
-  //       new Requirement({
-  //         id: this.getCellValue(i, 'ID'),
-  //         name: this.getCellValue(i, 'Name'),
-  //         text: this.getCellValue(i, 'Requirement_Text'),
-  //         status: this.getCellValue(i, 'Requirement_status'),
-  //         requirementId: this.getCellValue(i, 'Requirement_ID'),
-  //         parentId: this.getCellValue(i, 'Parent User ID'),
-  //       })
-  //     );
-  //   }
-
-  //   return requirements;
-  // }
-
-  // extractTestCases() {
-  //   const testCases = [];
-
-  //   for (let i = 1; i < this.content.length; i++) {
-  //     const what = this.getCellValue(i, 'What');
-
-  //     if (what !== 'TestCase') continue;
-
-  //     testCases.push(
-  //       new TestCase({
-  //         id: this.getCellValue(i, 'ID'),
-  //         name: this.getCellValue(i, 'Name'),
-  //         description: this.getCellValue(i, 'Description'),
-  //       })
-  //     );
-  //   }
-
-  //   return testCases;
-  // }
-
-  // extractVerifyRelations() {
-  //   const verifyRelations = [];
-
-  //   for (let i = 1; i < this.content.length; i++) {
-  //     const what = this.getCellValue(i, 'What');
-
-  //     if (what !== 'Verify') continue;
-
-  //     verifyRelations.push({
-  //       id: this.getCellValue(i, 'ID'),
-  //       from: this.getCellValue(i, 'From'),
-  //       to: this.getCellValue(i, 'To'),
-  //     });
-  //   }
-
-  //   return verifyRelations;
-  // }
 
   extractData() {
     const data = {

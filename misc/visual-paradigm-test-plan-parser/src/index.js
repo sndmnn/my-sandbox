@@ -1,8 +1,10 @@
 const path = require('path');
 const { writeFileSync } = require('fs');
 const extractWMSRequirementsSheetDataScript = require('./transaction-scripts/extractWMSRequirementsSheetDataScript');
-const parseSheetsIntoArraysOfArrays = require('./transaction-scripts/parseSheetsIntoArraysOfArrays');
+const parseSheetsIntoArraysOfArrays = require('./transaction-scripts/parseSheetsIntoArraysOfArraysScript');
 const extractTestPlansSheetDataScript = require('./transaction-scripts/extractTestPlansSheetDataScript');
+const linkTestPlansToTestCasesScript = require('./transaction-scripts/linkTestPlansToTestCasesScript');
+const linkTestCasesToRequirements = require('./transaction-scripts/linkTestCasesToRequirements');
 
 const INPUT_FOLDER = path.join(__dirname, '..', 'in');
 const OUT_FOLDER = path.join(__dirname, '..', 'out');
@@ -10,11 +12,34 @@ const SHEET_PATH = path.join(INPUT_FOLDER, 'raw.xlsx');
 
 const arrayOfArraySheets = parseSheetsIntoArraysOfArrays(SHEET_PATH);
 
+// Extract Requirements, Test Cases, Verify Relations, Derive Relations, Notes, and Anchor Relations
 const extractWMSRequirementsDataResult =
   extractWMSRequirementsSheetDataScript(arrayOfArraySheets);
 
+// Extract Test Plans (the steps for each test case)
 const extractTestPlansResults =
   extractTestPlansSheetDataScript(arrayOfArraySheets);
+
+// Links the test plans to the test cases
+const linkedTestCases = linkTestPlansToTestCasesScript(
+  extractTestPlansResults.testPlans,
+  extractWMSRequirementsDataResult.testCases
+);
+
+// Links linked test cases (test cases with steps) to requirements
+const linkedRequirements = linkTestCasesToRequirements(
+  linkedTestCases,
+  extractWMSRequirementsDataResult.verifyRelations,
+  extractWMSRequirementsDataResult.requirements
+);
+
+let md = '';
+
+for (const requirement of linkedRequirements) {
+  md += requirement.toMarkdown();
+}
+
+writeFileSync(path.join(OUT_FOLDER, 'requirements.md'), md);
 
 writeFileSync(
   path.join(OUT_FOLDER, 'requirements.json'),

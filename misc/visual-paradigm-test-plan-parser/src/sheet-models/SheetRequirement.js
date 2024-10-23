@@ -1,4 +1,4 @@
-class Requirement {
+class SheetRequirement {
   /**
    * @param {String} params.id Global ID
    * @param {String} params.name Requirement name
@@ -17,4 +17,4 @@ class Requirement {
   }
 }
 
-module.exports = Requirement;
+module.exports = SheetRequirement;
