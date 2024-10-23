@@ -1,7 +1,7 @@
 const Requirement = require('../models/Requirement');
 const { TestCase } = require('../models/TestCase');
-const SheetRequirement = require('../sheet-models/SheetRequirement');
-const VerifyRelation = require('../sheet-models/VerifyRelation');
+const SheetRequirement = require('../models/SheetRequirement');
+const VerifyRelation = require('../models/VerifyRelation');
 
 /**
  * @param {TestCase[]} testCases

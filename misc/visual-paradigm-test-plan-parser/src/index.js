@@ -1,10 +1,10 @@
 const path = require('path');
 const { writeFileSync } = require('fs');
-const extractWMSRequirementsSheetDataScript = require('./transaction-scripts/extractWMSRequirementsSheetDataScript');
-const parseSheetsIntoArraysOfArrays = require('./transaction-scripts/parseSheetsIntoArraysOfArraysScript');
-const extractTestPlansSheetDataScript = require('./transaction-scripts/extractTestPlansSheetDataScript');
-const linkTestPlansToTestCasesScript = require('./transaction-scripts/linkTestPlansToTestCasesScript');
-const linkTestCasesToRequirements = require('./transaction-scripts/linkTestCasesToRequirements');
+const extractWMSRequirementsSheetDataScript = require('./scripts/extractWMSRequirementsSheetDataScript');
+const parseSheetsIntoArraysOfArrays = require('./scripts/parseSheetsIntoArraysOfArraysScript');
+const extractTestPlansSheetDataScript = require('./scripts/extractTestPlansSheetDataScript');
+const linkTestPlansToTestCasesScript = require('./scripts/linkTestPlansToTestCasesScript');
+const linkTestCasesToRequirements = require('./scripts/linkTestCasesToRequirements');
 
 const INPUT_FOLDER = path.join(__dirname, '..', 'in');
 const OUT_FOLDER = path.join(__dirname, '..', 'out');

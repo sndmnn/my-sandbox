@@ -1,5 +1,5 @@
-const TestPlansSheet = require('../sheet-models/TestPlansSheet');
-const SheetNames = require('../sheet-models/SheetNames');
+const TestPlansSheet = require('../models/TestPlansSheet');
+const SheetNames = require('../models/SheetNames');
 
 /**
  * @param {String[][]} arrayOfArraysSheets Array of arrays that represents the content of the sheets

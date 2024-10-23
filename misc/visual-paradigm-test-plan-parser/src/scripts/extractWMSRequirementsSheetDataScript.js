@@ -1,5 +1,5 @@
-const WMSRequirementsSheet = require('../sheet-models/WMSRequirementsSheet');
-const SheetNames = require('../sheet-models/SheetNames');
+const WMSRequirementsSheet = require('../models/WMSRequirementsSheet');
+const SheetNames = require('../models/SheetNames');
 
 /**
  * @param {String[][]} arrayOfArraysSheets Array of arrays that represents the content of the sheets
