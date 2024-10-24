@@ -26,7 +26,7 @@ function linkTestCasesToRequirements(
       requirementId: sheetRequirement.requirementId,
       name: sheetRequirement.name,
       text: sheetRequirement.text,
-      childRequirements: [],
+      group: sheetRequirement.group,
       testCases: [],
     });
 

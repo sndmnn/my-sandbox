@@ -1,13 +1,15 @@
-const path = require('path');
+const { writeFileSync } = require('fs');
+const { join } = require('path');
 const extractWMSRequirementsSheetDataScript = require('./scripts/extractWMSRequirementsSheetDataScript');
 const parseSheetsIntoArraysOfArrays = require('./scripts/parseSheetsIntoArraysOfArraysScript');
 const extractTestPlansSheetDataScript = require('./scripts/extractTestPlansSheetDataScript');
 const linkTestPlansToTestCasesScript = require('./scripts/linkTestPlansToTestCasesScript');
 const linkTestCasesToRequirements = require('./scripts/linkTestCasesToRequirements');
 const transformRequirementsListIntoHTMLFile = require('./scripts/transformRequirementsListIntoHTMLFile');
-const { INPUT_FOLDER } = require('./config');
+const { INPUT_FOLDER, OUTPUT_FOLDER } = require('./config');
+const groupRequirementsScript = require('./scripts/groupRequirementsScript');
 
-const SHEET_PATH = path.join(INPUT_FOLDER, 'raw.xlsx');
+const SHEET_PATH = join(INPUT_FOLDER, 'raw.xlsx');
 
 const arrayOfArraySheets = parseSheetsIntoArraysOfArrays(SHEET_PATH);
 
@@ -32,6 +34,15 @@ const requirementsWithTests = linkTestCasesToRequirements(
   extractWMSRequirementsDataResult.requirements
 );
 
+const groupedRequirements = groupRequirementsScript(requirementsWithTests);
+
 // Transforms the requirements with tests into an HTML file and
 // saves it in the output folder
-transformRequirementsListIntoHTMLFile(requirementsWithTests);
+Object.keys(groupedRequirements).forEach((key) => {
+  const html = transformRequirementsListIntoHTMLFile(
+    groupedRequirements[key],
+    key
+  );
+
+  writeFileSync(join(OUTPUT_FOLDER, `${key}.html`), html);
+});

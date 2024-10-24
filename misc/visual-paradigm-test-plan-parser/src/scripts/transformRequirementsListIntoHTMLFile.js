@@ -1,8 +1,5 @@
-const { writeFileSync } = require('fs');
-const { join } = require('path');
 const RequirementWithTests = require('../models/RequirementWithTests');
 const { HTMLTransformer } = require('../transformers');
-const { OUTPUT_FOLDER } = require('../config');
 
 /**
  * Transforms a list of requirements into an HTML file
@@ -11,8 +8,7 @@ const { OUTPUT_FOLDER } = require('../config');
  */
 function transformRequirementsListIntoHTMLFile(requirements) {
   const requirementsHTML = HTMLTransformer.requirementsToHTML(requirements);
-
-  writeFileSync(join(OUTPUT_FOLDER, 'requirements.html'), requirementsHTML);
+  return requirementsHTML;
 }
 
 module.exports = transformRequirementsListIntoHTMLFile;

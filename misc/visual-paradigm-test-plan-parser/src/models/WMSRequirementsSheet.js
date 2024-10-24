@@ -18,27 +18,26 @@ const headerMap = {
   'Model': 8,
   'Transit From': 9,
   'Transit To': 10,
-  'From': 11,
-  'To': 12,
-  'Supplier': 13,
-  'Client': 14,
-  'Visibility': 15,
-  'Abstract': 16,
-  'Leaf': 17,
-  'Root': 18,
-  'Parent User ID': 19,
-  'Requirement_Text': 20,
-  'Requirement_ID': 21,
-  'Requirement_source': 22,
-  'Requirement_kind': 23,
-  'Requirement_verifyMethod': 24,
-  'Requirement_risk': 25,
-  'Requirement_status': 26,
-  'Diagram ID': 27,
-  'Diagram Name': 28,
-  'Parent ID': 29,
-  'Parent Name': 30,
-  'Delete ?': 31,
+  'Visibility': 11,
+  'Abstract': 12,
+  'Leaf': 13,
+  'Root': 14,
+  'From': 15,
+  'To': 16,
+  'Parent User ID': 17,
+  'Requirement_Text': 18,
+  'Requirement_ID': 19,
+  'Requirement_source': 20,
+  'Requirement_kind': 21,
+  'Requirement_verifyMethod': 22,
+  'Requirement_risk': 23,
+  'Requirement_status': 24,
+  'Tagged_Value_group': 25,
+  'Diagram ID': 26,
+  'Diagram Name': 27,
+  'Parent ID': 28,
+  'Parent Name': 29,
+  'Delete ?': 30,
 };
 
 module.exports = class WMSRequirementsSheet extends SimpleSheet {
@@ -54,6 +53,7 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
       deriveRelations: [],
       notes: [],
       anchorRelations: [],
+      packages: [],
     };
 
     for (let i = 1; i < this.content.length; i++) {
@@ -92,6 +92,7 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
       status: this.getCellValue(row, 'Requirement_status'),
       requirementId: this.getCellValue(row, 'Requirement_ID'),
       parentId: this.getCellValue(row, 'Parent ID'),
+      group: this.getCellValue(row, 'Tagged_Value_group'),
     });
   }
 
