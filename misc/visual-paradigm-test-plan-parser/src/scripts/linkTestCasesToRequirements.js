@@ -30,32 +30,34 @@ function linkTestCasesToRequirements(
       testCases: [],
     });
 
-    const verifyRelation = verifyRelations.find(
+    const relations = verifyRelations.filter(
       (verifyRelation) => verifyRelation.to === sheetRequirement.id
     );
 
-    if (typeof verifyRelation === 'undefined') continue;
+    for (let r = 0; r < relations.length; r++) {
+      const verifyRelation = relations[r];
 
-    const foundTestCase = testCases.find(
-      (testCase) => testCase.globalId === verifyRelation.from
-    );
-
-    if (typeof foundTestCase !== 'undefined') {
-      linkedRequirements[sheetRequirement.id].testCases.push(
-        new TestCase({
-          globalId: foundTestCase.globalId,
-          name: foundTestCase.name,
-          description: foundTestCase.description,
-          steps: foundTestCase.steps.map(
-            (step) =>
-              new TestPlanStep({
-                step: step.step,
-                procedure: step.procedure,
-                expectedResult: step.expectedResult,
-              })
-          ),
-        })
+      const foundTestCase = testCases.find(
+        (testCase) => testCase.globalId === verifyRelation.from
       );
+
+      if (typeof foundTestCase !== 'undefined') {
+        linkedRequirements[sheetRequirement.id].testCases.push(
+          new TestCase({
+            globalId: foundTestCase.globalId,
+            name: foundTestCase.name,
+            description: foundTestCase.description,
+            steps: foundTestCase.steps.map(
+              (step) =>
+                new TestPlanStep({
+                  step: step.step,
+                  procedure: step.procedure,
+                  expectedResult: step.expectedResult,
+                })
+            ),
+          })
+        );
+      }
     }
   }
 
