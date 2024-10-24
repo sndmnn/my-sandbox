@@ -1,3 +1,5 @@
+const { TestCase } = require('./TestCase');
+
 class RequirementWithTests {
   /**
    * @param {String} params.globalId Global ID
@@ -13,16 +15,6 @@ class RequirementWithTests {
     this.name = params.name;
     this.text = params.text;
     this.testCases = params.testCases || [];
-  }
-
-  toMarkdown() {
-    let md = '';
-
-    md += `# ${this.name}\n\n`;
-    md += `${this.text}\n\n`;
-    md += this.testCases.map((testCase) => testCase.toMarkdown()).join('\n\n');
-
-    return md;
   }
 }
 

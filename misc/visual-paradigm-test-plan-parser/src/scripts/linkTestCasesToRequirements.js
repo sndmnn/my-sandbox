@@ -1,5 +1,5 @@
 const RequirementWithTests = require('../models/RequirementWithTests');
-const { TestCase } = require('../models/TestCase');
+const { TestCase, TestPlanStep } = require('../models/TestCase');
 const SheetRequirement = require('../models/SheetRequirement');
 const VerifyRelation = require('../models/VerifyRelation');
 
@@ -39,7 +39,21 @@ function linkTestCasesToRequirements(
     );
 
     if (typeof foundTestCase !== 'undefined') {
-      linkedRequirements[sheetRequirement.id].testCases.push(foundTestCase);
+      linkedRequirements[sheetRequirement.id].testCases.push(
+        new TestCase({
+          globalId: foundTestCase.globalId,
+          name: foundTestCase.name,
+          description: foundTestCase.description,
+          steps: foundTestCase.steps.map(
+            (step) =>
+              new TestPlanStep({
+                step: step.step,
+                procedure: step.procedure,
+                expectedResult: step.expectedResult,
+              })
+          ),
+        })
+      );
     }
   }
 

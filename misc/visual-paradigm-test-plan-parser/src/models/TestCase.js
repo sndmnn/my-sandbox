@@ -24,30 +24,6 @@ class TestCase {
     this.description = params.description;
     this.steps = params.steps || [];
   }
-
-  toMarkdown() {
-    let md = '';
-
-    md += `## ${this.name}\n\n`;
-    md += `${this.description}`;
-
-    if (this.steps.length > 0) {
-      md += '\n\n';
-    }
-
-    this.steps.forEach((step) => {
-      md += `### ${step.step}\n\n`;
-
-      if (step.procedure) {
-        md += `**Procedure:**\n\n${step.procedure}\n\n`;
-      }
-      if (step.expectedResult) {
-        md += `**Expected Result:**\n\n${step.expectedResult}\n\n`;
-      }
-    });
-
-    return md;
-  }
 }
 
 module.exports = {
