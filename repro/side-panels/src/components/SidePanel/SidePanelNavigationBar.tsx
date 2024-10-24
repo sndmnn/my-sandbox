@@ -13,9 +13,6 @@ interface ComponentProps {
  * Navigation bar for side panels. It's intended to be used inside a side panel
  * and only inside a side panel.
  *
- * @param params.title
- * title of the side panel
- *
  * @param params.onClose
  * function to call when the close button is clicked
  *
