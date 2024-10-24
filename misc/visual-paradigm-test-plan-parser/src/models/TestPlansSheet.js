@@ -6,6 +6,9 @@ class TestPlansSheet {
   }
 
   extractData() {
+    /**
+     * @type {{ testPlans: TestPlan[] }}
+     */
     const data = {
       testPlans: [],
     };

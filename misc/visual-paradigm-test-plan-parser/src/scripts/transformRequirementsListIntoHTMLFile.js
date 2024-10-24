@@ -5,6 +5,8 @@ const { HTMLTransformer } = require('../transformers');
 const { OUTPUT_FOLDER } = require('../config');
 
 /**
+ * Transforms a list of requirements into an HTML file
+ *
  * @param {RequirementWithTests[]} requirements
  */
 function transformRequirementsListIntoHTMLFile(requirements) {

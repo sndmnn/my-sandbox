@@ -9,6 +9,9 @@ const REQUIREMENTS_TEMPLATE_PATH = path.join(
   'requirements.hbs'
 );
 
+/**
+ * Transforms requirements into an HTML document using Handlebars.
+ */
 class HandlebarsHTMLTransformer {
   /**
    * @param {RequirementWithTests[]} requirements

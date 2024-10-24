@@ -1,5 +1,13 @@
 const { TestCase } = require('../models/TestCase');
+const { TestPlan } = require('../models/TestPlan');
 
+/**
+ * Link test plans to test cases
+ * 
+ * @param {TestPlan[]} testPlans
+ * @param {TestCase[]} testCases
+ * @returns
+ */
 function linkTestPlansToTestCasesScript(testPlans, testCases) {
   let linkedTestCases = [];
 

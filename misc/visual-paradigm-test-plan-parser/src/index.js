@@ -4,7 +4,6 @@ const parseSheetsIntoArraysOfArrays = require('./scripts/parseSheetsIntoArraysOf
 const extractTestPlansSheetDataScript = require('./scripts/extractTestPlansSheetDataScript');
 const linkTestPlansToTestCasesScript = require('./scripts/linkTestPlansToTestCasesScript');
 const linkTestCasesToRequirements = require('./scripts/linkTestCasesToRequirements');
-const linkRequirementsToParentRequirementsScript = require('./scripts/linkRequirementsToParentRequirements');
 const transformRequirementsListIntoHTMLFile = require('./scripts/transformRequirementsListIntoHTMLFile');
 const { INPUT_FOLDER } = require('./config');
 
@@ -33,4 +32,6 @@ const requirementsWithTests = linkTestCasesToRequirements(
   extractWMSRequirementsDataResult.requirements
 );
 
+// Transforms the requirements with tests into an HTML file and
+// saves it in the output folder
 transformRequirementsListIntoHTMLFile(requirementsWithTests);

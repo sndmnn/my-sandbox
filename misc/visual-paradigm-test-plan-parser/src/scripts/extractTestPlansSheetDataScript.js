@@ -2,6 +2,8 @@ const TestPlansSheet = require('../models/TestPlansSheet');
 const SheetNames = require('../models/SheetNames');
 
 /**
+ * Extracts data from the Test Plans sheet.
+ *
  * @param {String[][]} arrayOfArraysSheets Array of arrays that represents the content of the sheets
  */
 function extractTestPlansSheetDataScript(arrayOfArraySheets) {

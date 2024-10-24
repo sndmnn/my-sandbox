@@ -2,6 +2,12 @@ const XLSX = require('xlsx');
 const CSV = require('csv-parse/sync');
 const SheetNames = require('../models/SheetNames');
 
+/**
+ * Parse Excel sheets into arrays of arrays
+ *
+ * @param {String} sheetPath
+ * @returns
+ */
 function parseSheetsIntoArraysOfArrays(sheetPath) {
   const workbook = XLSX.readFile(sheetPath);
 
