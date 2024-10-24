@@ -137,6 +137,16 @@
       .procedure-result-wrapper {
         margin-left: 1rem;
       }
+
+      @media print {
+        body {
+          padding: 0;
+        }
+
+        .requirements-list > li {
+          page-break-inside: avoid;
+        }
+      }
     </style>
 </head>
 <body>
