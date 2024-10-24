@@ -97,6 +97,14 @@
         margin-bottom: 1rem;
       }
 
+      .test-cases {
+        list-style: none;
+      }
+
+      .test-cases > li:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
       .test-case-header {
         display: flex;
         align-items: center;
@@ -155,35 +163,40 @@
         <li>
             <h2>{{requirementId}} {{name}}</h2>
             <p>{{text}}</p>
-            {{#each testCases}}
-                <div class="test-case-header">
-                    <input type="checkbox" />
-                    <h3>{{name}}</h3>
-                </div>
-                <p>{{description}}</p>
 
-                {{#if steps.length}}
-                    <ul class="test-plan">
-                        {{#each steps}}
-                            <li>
-                                {{#if step}}
-                                    <h4>{{brSlashN step}}</h4>
-                                {{/if}}
-                                <div class="procedure-result-wrapper">
-                                    {{#if procedure}}
-                                        <h5>Procedure</h5>
-                                        <p>{{brSlashN procedure}}</p>
-                                    {{/if}}
-                                    {{#if expectedResult}}
-                                        <h5>Expected Result</h5>
-                                        <p>{{brSlashN expectedResult}}</p>
-                                    {{/if}}
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ul>
-                {{/if}}
-            {{/each}}
+            <ul class="test-cases">
+                {{#each testCases}}
+                    <li>
+                        <div class="test-case-header">
+                            <input type="checkbox" />
+                            <h3>{{name}}</h3>
+                        </div>
+                        <p>{{description}}</p>
+
+                        {{#if steps.length}}
+                            <ul class="test-plan">
+                                {{#each steps}}
+                                    <li>
+                                        {{#if step}}
+                                            <h4>{{brSlashN step}}</h4>
+                                        {{/if}}
+                                        <div class="procedure-result-wrapper">
+                                            {{#if procedure}}
+                                                <h5>Procedure</h5>
+                                                <p>{{brSlashN procedure}}</p>
+                                            {{/if}}
+                                            {{#if expectedResult}}
+                                                <h5>Expected Result</h5>
+                                                <p>{{brSlashN expectedResult}}</p>
+                                            {{/if}}
+                                        </div>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
         </li>
     {{/each}}
     </ul>
