@@ -40,7 +40,7 @@ const groupedRequirements = groupRequirementsScript(requirementsWithTests);
 // saves it in the output folder
 Object.keys(groupedRequirements).forEach((key) => {
   const html = transformRequirementsListIntoHTMLFile(
-    groupedRequirements[key],
+    groupedRequirements[key].sort((a, b) => a.order - b.order),
     key
   );
 

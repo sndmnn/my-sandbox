@@ -27,6 +27,7 @@ function linkTestCasesToRequirements(
       name: sheetRequirement.name,
       text: sheetRequirement.text,
       group: sheetRequirement.group,
+      order: sheetRequirement.order,
       testCases: [],
     });
 

@@ -7,7 +7,7 @@ class RequirementWithTests {
    * @param {String} params.name Requirement name
    * @param {String} params.text Requirement text
    * @param {String} params.group Requirement group
-   * @param {Array<RequirementWithTests>} params.childRequirements Child requirements
+   * @param {number} params.order Requirement sort order
    * @param {Array<TestCase>} params.testCases Test cases
    */
   constructor(params) {
@@ -16,6 +16,7 @@ class RequirementWithTests {
     this.name = params.name;
     this.text = params.text;
     this.group = params.group;
+    this.order = params.order;
     this.testCases = params.testCases || [];
   }
 }

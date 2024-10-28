@@ -7,6 +7,7 @@ class SheetRequirement {
    * @param {String} params.requirementId Requirement ID
    * @param {String} params.parentId Parent `requirementId`
    * @param {String} params.group Requirement group
+   * @param {number} params.order Requirement sort order
    */
   constructor(params) {
     this.id = params.id;
@@ -16,6 +17,7 @@ class SheetRequirement {
     this.requirementId = params.requirementId;
     this.parentId = params.parentId;
     this.group = params.group;
+    this.order = params.order;
   }
 }
 

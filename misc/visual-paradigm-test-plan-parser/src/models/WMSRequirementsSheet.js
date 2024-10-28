@@ -33,11 +33,12 @@ const headerMap = {
   'Requirement_risk': 23,
   'Requirement_status': 24,
   'Tagged_Value_group': 25,
-  'Diagram ID': 26,
-  'Diagram Name': 27,
-  'Parent ID': 28,
-  'Parent Name': 29,
-  'Delete ?': 30,
+  'Tagged_Value_order': 26,
+  'Diagram ID': 27,
+  'Diagram Name': 28,
+  'Parent ID': 29,
+  'Parent Name': 30,
+  'Delete ?': 31,
 };
 
 module.exports = class WMSRequirementsSheet extends SimpleSheet {
@@ -93,6 +94,7 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
       requirementId: this.getCellValue(row, 'Requirement_ID'),
       parentId: this.getCellValue(row, 'Parent ID'),
       group: this.getCellValue(row, 'Tagged_Value_group'),
+      order: Number(this.getCellValue(row, 'Tagged_Value_order')),
     });
   }
 
