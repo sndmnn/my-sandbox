@@ -1,4 +1,4 @@
-module.exports = class SimpleSheet {
+class SimpleSheet {
   constructor(headerMap, content) {
     /**
      * Map that links a header name to a numeric column index
@@ -23,4 +23,6 @@ module.exports = class SimpleSheet {
     }
     return this.content[row][columnIndex];
   }
-};
+}
+
+module.exports = SimpleSheet;

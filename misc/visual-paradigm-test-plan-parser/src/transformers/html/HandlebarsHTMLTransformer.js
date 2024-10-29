@@ -1,7 +1,7 @@
 const path = require('path');
 const Handlebars = require('handlebars');
 const { readFileSync } = require('fs');
-const RequirementWithTests = require('../models/RequirementWithTests');
+const RequirementWithTests = require('../../models/RequirementWithTests');
 
 const REQUIREMENTS_TEMPLATE_PATH = path.join(
   __dirname,
@@ -9,11 +9,10 @@ const REQUIREMENTS_TEMPLATE_PATH = path.join(
   'requirements.hbs'
 );
 
-/**
- * Transforms requirements into an HTML document using Handlebars.
- */
 class HandlebarsHTMLTransformer {
   /**
+   * Transforms requirements into an HTML document using Handlebars.
+   *
    * @param {RequirementWithTests[]} requirements
    */
   static requirementsToHTML(requirements) {

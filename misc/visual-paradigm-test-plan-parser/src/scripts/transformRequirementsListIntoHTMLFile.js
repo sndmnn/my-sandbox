@@ -2,7 +2,7 @@ const RequirementWithTests = require('../models/RequirementWithTests');
 const { HTMLTransformer } = require('../transformers');
 
 /**
- * Transforms a list of requirements into an HTML file
+ * Transforms a list of requirements with tests into an HTML file
  *
  * @param {RequirementWithTests[]} requirements
  */

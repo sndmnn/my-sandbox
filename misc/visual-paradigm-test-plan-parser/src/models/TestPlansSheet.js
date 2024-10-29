@@ -1,4 +1,4 @@
-const { TestPlan, TestPlanStep } = require('./TestPlan');
+const { SheetTestPlan, SheetTestPlanStep } = require('./SheetTestPlan');
 
 class TestPlansSheet {
   constructor(content) {
@@ -39,14 +39,14 @@ class TestPlansSheet {
       }
 
       if (whatIsNext === 'testCaseIdAndName') {
-        const testPlan = new TestPlan({
+        const testPlan = new SheetTestPlan({
           id: this.content[row][0],
           name: this.content[row][1],
         });
 
         data.testPlans.push(testPlan);
       } else if (whatIsNext === 'testPlanStep') {
-        const testPlanStep = new TestPlanStep({
+        const testPlanStep = new SheetTestPlanStep({
           step: this.content[row][0],
           procedure: this.content[row][1],
           expectedResult: this.content[row][2],

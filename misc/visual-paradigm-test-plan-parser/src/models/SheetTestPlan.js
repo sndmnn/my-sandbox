@@ -1,4 +1,4 @@
-class TestPlanStep {
+class SheetTestPlanStep {
   /**
    * @param {String} params.step
    * @param {String} params.procedure
@@ -11,7 +11,7 @@ class TestPlanStep {
   }
 }
 
-class TestPlan {
+class SheetTestPlan {
   /**
    * @param {String} params.id Test Case Global ID
    * @param {String} params.name Test Case Name
@@ -28,6 +28,6 @@ class TestPlan {
 }
 
 module.exports = {
-  TestPlanStep,
-  TestPlan,
+  SheetTestPlanStep,
+  SheetTestPlan,
 };

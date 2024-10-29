@@ -4,7 +4,7 @@ const SheetRequirement = require('../models/SheetRequirement');
 const VerifyRelation = require('../models/VerifyRelation');
 
 /**
- * Links test cases to requirements by exploring the verify relations.
+ * Links test cases to requirements by exploring verify relations.
  *
  * @param {TestCase[]} testCases
  * @param {VerifyRelation[]} verifyRelations

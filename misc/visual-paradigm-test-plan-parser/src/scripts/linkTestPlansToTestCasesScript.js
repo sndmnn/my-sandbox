@@ -1,9 +1,9 @@
 const { TestCase } = require('../models/TestCase');
-const { TestPlan } = require('../models/TestPlan');
+const { SheetTestPlan: TestPlan } = require('../models/SheetTestPlan');
 
 /**
  * Link test plans to test cases
- * 
+ *
  * @param {TestPlan[]} testPlans
  * @param {TestCase[]} testCases
  * @returns

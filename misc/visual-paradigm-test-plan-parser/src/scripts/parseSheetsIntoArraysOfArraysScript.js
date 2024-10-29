@@ -3,10 +3,12 @@ const CSV = require('csv-parse/sync');
 const SheetNames = require('../models/SheetNames');
 
 /**
- * Parse Excel sheets into arrays of arrays
+ * Parses Excel sheets into arrays of arrays. The first array represents
+ * the rows, and the second array represents the columns. Each cell is a string.
  *
- * @param {String} sheetPath
- * @returns
+ * @param {String} sheetPath path to the Excel sheet
+ * @returns {Object} hash map of sheet names to arrays of arrays that represent
+ * the sheet contents
  */
 function parseSheetsIntoArraysOfArrays(sheetPath) {
   const workbook = XLSX.readFile(sheetPath);

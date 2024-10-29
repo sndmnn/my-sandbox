@@ -16,7 +16,7 @@ class TestCase {
    * @param {String} params.globalId Global ID
    * @param {String} params.name Test case name
    * @param {String} params.description Test case description
-   * @param {Array<TestPlanStep>} params.steps Test case steps
+   * @param {Array<TestPlanStep>} params.steps Test case steps (test plan)
    */
   constructor(params) {
     this.globalId = params.globalId;

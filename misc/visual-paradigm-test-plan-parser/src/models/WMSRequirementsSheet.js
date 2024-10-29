@@ -41,20 +41,42 @@ const headerMap = {
   'Delete ?': 31,
 };
 
-module.exports = class WMSRequirementsSheet extends SimpleSheet {
+class WMSRequirementsSheet extends SimpleSheet {
   constructor(content) {
     super(headerMap, content);
   }
 
   extractData() {
     const data = {
+      /**
+       * @type {SheetRequirement[]}
+       */
       requirements: [],
+
+      /**
+       * @type {TestCase[]}
+       */
       testCases: [],
+
+      /**
+       * @type {VerifyRelation[]}
+       */
       verifyRelations: [],
+
+      /**
+       * @type {DeriveRelation[]}
+       */
       deriveRelations: [],
+
+      /**
+       * @type {Note[]}
+       */
       notes: [],
+
+      /**
+       * @type {AnchorRelation[]}
+       */
       anchorRelations: [],
-      packages: [],
     };
 
     for (let i = 1; i < this.content.length; i++) {
@@ -137,4 +159,6 @@ module.exports = class WMSRequirementsSheet extends SimpleSheet {
       to: this.getCellValue(row, 'To'),
     });
   }
-};
+}
+
+module.exports = WMSRequirementsSheet;

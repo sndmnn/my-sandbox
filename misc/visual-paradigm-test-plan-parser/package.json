@@ -1,14 +1,15 @@
 {
-  "name": "visual-paradigm-test-plan-parser",
+  "name": "vptp-parser",
+  "description": "Visual Paradigm test plan parser",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "vptp": "src/index.js"
   },
-  "author": "",
+  "author": "Henrique Cotta",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "commander": "^12.1.0",
     "csv-parse": "^5.5.6",
     "handlebars": "^4.7.8",
     "xlsx": "^0.18.5"

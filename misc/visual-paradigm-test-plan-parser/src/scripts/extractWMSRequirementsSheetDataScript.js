@@ -2,7 +2,8 @@ const WMSRequirementsSheet = require('../models/WMSRequirementsSheet');
 const SheetNames = require('../models/SheetNames');
 
 /**
- * Extracts data from the WMS Requirements sheet.
+ * Extracts data from the WMS Requirements sheet and transforms it into
+ * domain models.
  *
  * @param {String[][]} arrayOfArraysSheets Array of arrays that represents the content of the sheets
  */
