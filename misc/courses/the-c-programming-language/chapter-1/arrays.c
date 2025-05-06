@@ -72,16 +72,21 @@ void histogram_vertical() {
         if (word_lengths[i] > max_word_number)
             max_word_number = word_lengths[i];
 
-    for (int i = max_word_number; i >= 0; --i) {
-        for (int j = 0; j < max_count; ++j) {
+    for (int i = max_word_number; i > 0; --i) {
+        for (int j = 0; j <= max_count; ++j) {
             if (word_lengths[j] >= i)
-                putchar('o');
+                printf("% *c", LONGEST_WORD_DIGITS, 'o');
             else
-                putchar(' ');
+                printf("% *c", LONGEST_WORD_DIGITS, ' ');
         }
 
         putchar('\n');
     }
+
+    for (int i = 0; i <= max_count; ++i)
+        printf("% *d", LONGEST_WORD_DIGITS, i);
+
+    putchar('\n');
 }
 
 int main() {
