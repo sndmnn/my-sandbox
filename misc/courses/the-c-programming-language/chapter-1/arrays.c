@@ -7,6 +7,9 @@
 #define LONGEST_WORD_LENGTH 189819
 #define LONGEST_WORD_DIGITS 6
 
+#define ASCII_LIMIT 256
+#define LONGEST_ASCII_DIGIT 3
+
 void histogram_horizontal() {
     int word_lengths[LONGEST_WORD_LENGTH];
     int c, state = OUT, max_count = 0;
@@ -89,6 +92,36 @@ void histogram_vertical() {
     putchar('\n');
 }
 
+void frequency_histogram() {
+    int c;
+    int frequency[ASCII_LIMIT];
+
+    for (int i = 0; i < ASCII_LIMIT; ++i)
+        frequency[i] = 0;
+
+    while ((c = getchar()) != EOF) {
+        ++frequency[c];
+    }
+
+    int largest_count = 0;
+
+    for (int i = 0; i < ASCII_LIMIT; ++i)
+        if (frequency[i] > largest_count)
+            largest_count = frequency[i];
+
+    for (int i = 0; i < ASCII_LIMIT; ++i) {
+        if (frequency[i] > 0) {
+            printf("%3d ", i);
+        
+            for (int j = 0; j < frequency[i]; ++j)
+                putchar('O');
+
+            putchar('\n');
+        }
+    }
+}
+
+
 int main() {
-    histogram_vertical();
+    frequency_histogram();
 }
