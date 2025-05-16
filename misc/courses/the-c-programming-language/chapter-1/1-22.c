@@ -37,8 +37,7 @@ void print_buff(int buff[], int buff_len) {
 }
 
 int print_and_skew(int buff[], int buff_len, int last_index) {
-    // if a buffer holds less than the capacity, we only need to print it and
-    // move on
+    // if a buffer holds less than the capacity, print it and move on
     if (last_index < buff_len - 1) {
         print_buff(buff, buff_len);
         clear_buff(buff, buff_len);
@@ -56,6 +55,7 @@ int print_and_skew(int buff[], int buff_len, int last_index) {
         }
     }
 
+    // if no space is found, print the entire buffer and move on
     if (space_index == -1) {
         print_buff(buff, buff_len);
         clear_buff(buff, buff_len);
@@ -63,7 +63,6 @@ int print_and_skew(int buff[], int buff_len, int last_index) {
     }    
 
     // prints up to the last blank char and puts a line break
-    // or prints the whole buffer if there's no blank character
     for (int i = 0; i < buff_len; ++i) { 
         putchar(buff[i]);
         
